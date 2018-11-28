@@ -11,411 +11,130 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
-                            <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
-                            <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i>Logout</a></li>
+                            <li><a href="user-profile.html"><i class="fa fa-user"></i>Meu perfil</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i>Configurações</a></li>
+                            <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-power-off"></i>Sair</a></li>
                         </ul>
-                    </span>
-                    <span class="status">
-                        <i class="fa fa-circle"></i> Online
                     </span>
                 </div>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="nav-header nav-header-first hidden-sm hidden-xs">
-                        Navigation
+                        Navegação
                     </li>
                     <li class="active">
-                        <a href="index-2.html">
+                        <a href="">
                             <i class="fa fa-dashboard"></i>
                             <span>Dashboard</span>
-                            <span class="label label-primary label-circle pull-right">28</span>
+                            <!--<span class="label label-primary label-circle pull-right">28</span>-->
                         </a>
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-table"></i>
-                            <span>Tables</span>
+                            <i class="fa fa-bar-chart-o"></i>
+                            <span>Chamados</span>
                             <i class="fa fa-angle-right drop-icon"></i>
                         </a>
                         <ul class="submenu">
                             <li>
                                 <a href="tables.html">
-                                    Simple
+                                    <i class="fa fa-warning fa-fw fa-lg yellow"></i>
+                                    Em aberto
                                 </a>
                             </li>
                             <li>
                                 <a href="tables-advanced.html">
-                                    Advanced
+                                    <i class="fa fa-info-circle fa-fw fa-lg" style="color: #2980b9"></i>
+                                    Em atendimento
                                 </a>
                             </li>
                             <li>
                                 <a href="users.html">
-                                    Users
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-footables.html">
-                                    FooTables
+                                    <i class="fa fa-check-circle fa-fw fa-lg green"></i>
+                                    Atendidos
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-envelope"></i>
-                            <span>Email</span>
+                            <i class="fa fa-users"></i>
+                            <span>Clientes</span>
                             <i class="fa fa-angle-right drop-icon"></i>
                         </a>
                         <ul class="submenu">
                             <li>
+                                
                                 <a href="email-inbox.html">
-                                    Inbox
+                                    <i class="fa fa-users green"></i>
+                                    <i class="glyphicon glyphicon-list green"></i>
+                                    Listar
                                 </a>
                             </li>
                             <li>
                                 <a href="email-detail.html">
-                                    Detail
-                                </a>
-                            </li>
-                            <li>
-                                <a href="email-compose.html">
-                                    Compose
+                                    <i class="glyphicon glyphicon-user" style="color: #2980b9"></i>
+                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
+                                    Cadastrar
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-bar-chart-o"></i>
-                            <span>Graphs</span>
+                            <i class="fa fa-headphones"></i>
+                            <span>Atendentes</span>
                             <i class="fa fa-angle-right drop-icon"></i>
                         </a>
                         <ul class="submenu">
                             <li>
                                 <a href="graphs-morris.html">
-                                    Morris &amp; Mixed
+                                    <i class="fa fa-headphones green"></i>
+                                    <i class="glyphicon glyphicon-list green"></i>
+                                    Listar
                                 </a>
                             </li>
                             <li>
                                 <a href="graphs-flot.html">
-                                    Flot
-                                </a>
-                            </li>
-                            <li>
-                                <a href="graphs-dygraphs.html">
-                                    Dygraphs
-                                </a>
-                            </li>
-                            <li>
-                                <a href="graphs-xcharts.html">
-                                    xCharts
+                                    <i class="fa fa-headphones" style="color: #2980b9"></i>
+                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
+                                    Cadastrar
                                 </a>
                             </li>
                         </ul>
                     </li>
+                    
                     <li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-institution"></i>
+                            <span>Setores</span>
+                            <i class="fa fa-angle-right drop-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="graphs-morris.html">
+                                    <i class="fa fa-institution green"></i>
+                                    <i class="glyphicon glyphicon-list green"></i>
+                                    Listar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="graphs-flot.html">
+                                    <i class="fa fa-institution" style="color: #2980b9"></i>
+                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
+                                    Cadastrar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+<!--                    <li>
                         <a href="widgets.html">
                             <i class="fa fa-th-large"></i>
                             <span>Widgets</span>
                             <span class="label label-success pull-right">New</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-copy"></i>
-                            <span>Pages</span>
-                            <i class="fa fa-angle-right drop-icon"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="calendar.html">
-                                    Calendar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery.html">
-                                    Gallery
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery-v2.html">
-                                    Gallery v2
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pricing.html">
-                                    Pricing
-                                </a>
-                            </li>
-                            <li>
-                                <a href="projects.html">
-                                    Projects
-                                </a>
-                            </li>
-                            <li>
-                                <a href="team-members.html">
-                                    Team Members
-                                </a>
-                            </li>
-                            <li>
-                                <a href="timeline.html">
-                                    Timeline
-                                </a>
-                            </li>
-                            <li>
-                                <a href="timeline-grid.html">
-                                    Timeline Grid
-                                </a>
-                            </li>
-                            <li>
-                                <a href="user-profile.html">
-                                    User Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="search.html">
-                                    Search Results
-                                </a>
-                            </li>
-                            <li>
-                                <a href="invoice.html">
-                                    Invoice
-                                </a>
-                            </li>
-                            <li>
-                                <a href="intro.html">
-                                    Tour Layout
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-header hidden-sm hidden-xs">
-                        Components
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-edit"></i>
-                            <span>Forms</span>
-                            <i class="fa fa-angle-right drop-icon"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="form-elements.html">
-                                    Elements
-                                </a>
-                            </li>
-                            <li>
-                                <a href="x-editable.html">
-                                    X-Editable
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-wizard.html">
-                                    Wizard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-wizard-popup.html">
-                                    Wizard popup
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-wysiwyg.html">
-                                    WYSIWYG
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-summernote.html">
-                                    WYSIWYG Summernote
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-ckeditor.html">
-                                    WYSIWYG CKEditor
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-dropzone.html">
-                                    Multiple File Upload
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-desktop"></i>
-                            <span>UI Kit</span>
-                            <i class="fa fa-angle-right drop-icon"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="ui-elements.html">
-                                    Elements
-                                </a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">
-                                    Notifications &amp; Alerts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="modals.html">
-                                    Modals
-                                </a>
-                            </li>
-                            <li>
-                                <a href="video.html">
-                                    Video
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-toggle">
-                                    Icons
-                                    <i class="fa fa-angle-right drop-icon"></i>
-                                </a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="icons-awesome.html">
-                                            Awesome Icons
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="icons-halflings.html">
-                                            Halflings Icons
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="ui-nestable.html">
-                                    Nestable List
-                                </a>
-                            </li>
-                            <li>
-                                <a href="typography.html">
-                                    Typography
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-toggle">
-                                    3 Level Menu
-                                    <i class="fa fa-angle-right drop-icon"></i>
-                                </a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="#">
-                                            3rd Level
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            3rd Level
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            3rd Level
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="maps.html">
-                            <i class="fa fa-map-marker"></i>
-                            <span>Google Maps</span>
-                            <span class="label label-danger pull-right">Updated</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-file-text-o"></i>
-                            <span>Extra pages</span>
-                            <i class="fa fa-angle-right drop-icon"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="faq.html">
-                                    FAQ
-                                </a>
-                            </li>
-                            <li>
-                                <a href="emails.html">
-                                    Email Templates
-                                </a>
-                            </li>
-                            <li>
-                                <a href="login.html">
-                                    Login
-                                </a>
-                            </li>
-                            <li>
-                                <a href="login-full.html">
-                                    Login Full
-                                </a>
-                            </li>
-                            <li>
-                                <a href="registration.html">
-                                    Registration
-                                </a>
-                            </li>
-                            <li>
-                                <a href="registration-full.html">
-                                    Registration Full
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forgot-password.html">
-                                    Forgot Password
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forgot-password-full.html">
-                                    Forgot Password Full
-                                </a>
-                            </li>
-                            <li>
-                                <a href="lock-screen.html">
-                                    Lock Screen
-                                </a>
-                            </li>
-                            <li>
-                                <a href="lock-screen-full.html">
-                                    Lock Screen Full
-                                </a>
-                            </li>
-                            <li>
-                                <a href="error-404.html">
-                                    Error 404
-                                </a>
-                            </li>
-                            <li>
-                                <a href="error-404-v2.html">
-                                    Error 404 Nested
-                                </a>
-                            </li>
-                            <li>
-                                <a href="error-500.html">
-                                    Error 500
-                                </a>
-                            </li>
-                            <li>
-                                <a href="extra-grid.html">
-                                    Grid
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="angularjs/index.html">
-                            <i class="fa fa-google"></i>
-                            <span>AngularJS Demo</span>
-                        </a>
-                    </li>
+                    </li>                    -->
                 </ul>
             </div>
         </div>
