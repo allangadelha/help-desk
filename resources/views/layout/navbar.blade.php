@@ -2,9 +2,9 @@
 <header class="navbar" id="header-navbar">
     <div class="container">
         <a href="index-2.html" id="logo" class="navbar-brand">
-            <img src="img/logo.png" alt="" class="normal-logo logo-white"/>
-            <img src="img/logo-black.png" alt="" class="normal-logo logo-black"/>
-            <img src="img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/>
+            <img src="{{ asset('img/logo.png') }}" alt="" class="normal-logo logo-white"/>
+            <img src="{{ asset('img/logo-black.png') }}" alt="" class="normal-logo logo-black"/>
+            <img src="{{ asset('img/logo-small.png') }}" alt="" class="small-logo hidden-xs hidden-sm hidden"/>
         </a>
         <div class="clearfix">
             <button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
@@ -85,7 +85,7 @@
                             </li>
                             <li class="item first-item">
                                 <a href="#">
-                                    <img src="img/samples/messages-photo-1.png" alt=""/>
+                                    <!--<img src="img/samples/messages-photo-1.png" alt=""/>-->
                                     <span class="content">
                                         <span class="content-headline">
                                             George Clooney
@@ -100,7 +100,7 @@
                             </li>
                             <li class="item">
                                 <a href="#">
-                                    <img src="img/samples/messages-photo-2.png" alt=""/>
+<!--                                    <img src="img/samples/messages-photo-2.png" alt=""/>-->
                                     <span class="content">
                                         <span class="content-headline">
                                             Emma Watson
@@ -115,7 +115,7 @@
                             </li>
                             <li class="item">
                                 <a href="#">
-                                    <img src="img/samples/messages-photo-3.png" alt=""/>
+                                    <!--<img src="img/samples/messages-photo-3.png" alt=""/>-->
                                     <span class="content">
                                         <span class="content-headline">
                                             Robert Downey Jr.
@@ -155,7 +155,7 @@
                     </li>
                     <li class="dropdown profile-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/samples/scarlet-159.png" alt=""/>
+                            <img src="{{ asset('img/samples/scarlet-159.png') }}" alt=""/>
                             <span class="hidden-xs">Scarlett Johansson</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">

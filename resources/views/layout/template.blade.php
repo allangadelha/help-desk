@@ -6,7 +6,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title>Cube - Bootstrap Admin Template</title>
+        <title>@yield('title') | Help Desk</title>
 
         <script type="text/javascript">
         //<![CDATA[
@@ -22,19 +22,22 @@
             ;
         //]]>
         </script>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/bootstrap.min.css') }}"/>
 
-        <script src="js/demo-rtl.js"></script>
+        <script src="{{ asset('js/demo-rtl.js') }}"></script>
 
 
-        <link rel="stylesheet" type="text/css" href="css/libs/font-awesome.css"/>
-        <link rel="stylesheet" type="text/css" href="css/libs/nanoscroller.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/libs/font-awesome.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/libs/nanoscroller.css') }}"/>
 
-        <link rel="stylesheet" type="text/css" href="css/compiled/theme_styles.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/compiled/theme_styles.css') }}"/>
+        
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/libs/dataTables.fixedHeader.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/libs/dataTables.tableTools.css') }}">
 
-        <link rel="stylesheet" href="css/libs/daterangepicker.css" type="text/css"/>
-        <link rel="stylesheet" href="css/libs/jquery-jvectormap-1.2.2.css" type="text/css"/>
-        <link rel="stylesheet" href="css/libs/weather-icons.css" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('css/libs/daterangepicker.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('css/libs/jquery-jvectormap-1.2.2.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('css/libs/weather-icons.css') }}" type="text/css"/>
 
         <link type="image/x-icon" href="favicon.png" rel="shortcut icon"/>
 

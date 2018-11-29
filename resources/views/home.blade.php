@@ -1,4 +1,7 @@
 @extends('layout.template')
+    @section('title')
+        Dashborad
+    @endsection
 
 @section('content')
 <div class="row" style="opacity: 1;">
@@ -50,7 +53,7 @@
                 <div class="main-box infographic-box colored purple-bg">
                     <i class="fa fa-institution"></i>
                     <span class="headline">Setores</span>
-                    <span class="value">13.298</span>
+                    <span class="value">{{ App\SetorCliente::all()->count() }}</span>
                 </div>
             </div>
         </div>

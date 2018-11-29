@@ -3,7 +3,7 @@
     <section id="col-left" class="col-left-nano">
         <div id="col-left-inner" class="col-left-nano-content">
             <div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
-                <img alt="" src="img/samples/scarlet-159.png"/>
+                <img alt="" src="{{ asset('img/samples/scarlet-159.png') }}"/>
                 <div class="user-box">
                     <span class="name">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -24,7 +24,7 @@
                         Navegação
                     </li>
                     <li class="active">
-                        <a href="">
+                        <a href="/">
                             <i class="fa fa-dashboard"></i>
                             <span>Dashboard</span>
                             <!--<span class="label label-primary label-circle pull-right">28</span>-->
@@ -113,14 +113,14 @@
                         </a>
                         <ul class="submenu">
                             <li>
-                                <a href="graphs-morris.html">
+                                <a href="{{ url('/setoresClientes/index') }}">
                                     <i class="fa fa-institution green"></i>
                                     <i class="glyphicon glyphicon-list green"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="graphs-flot.html">
+                                <a href="{{ url('/setoresClientes/create') }}">
                                     <i class="fa fa-institution" style="color: #2980b9"></i>
                                     <i class="fa fa-plus-square" style="color: #2980b9"></i>
                                     Cadastrar

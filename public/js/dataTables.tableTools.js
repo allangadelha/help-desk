@@ -295,7 +295,7 @@ return asReturn;},"_fnHtmlDecode":function(sData)
 var n=document.createElement('div');return sData.replace(/&([^\s]*?);/g,function(match,match2){if(match.substr(1,1)==='#')
 {return String.fromCharCode(Number(match2.substr(1)));}
 else
-{n.innerHTML=match;return n.childNodes[0].nodeValue;}});},"_fnPrintStart":function(oConfig)
+
 {var that=this;var oSetDT=this.s.dt;this._fnPrintHideNodes(oSetDT.nTable);this.s.print.saveStart=oSetDT._iDisplayStart;this.s.print.saveLength=oSetDT._iDisplayLength;if(oConfig.bShowAll)
 {oSetDT._iDisplayStart=0;oSetDT._iDisplayLength=-1;if(oSetDT.oApi._fnCalculateEnd){oSetDT.oApi._fnCalculateEnd(oSetDT);}
 oSetDT.oApi._fnDraw(oSetDT);}

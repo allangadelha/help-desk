@@ -1,23 +1,56 @@
-<script src="js/demo-skin-changer.js"></script>  
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery.nanoscroller.min.js"></script>
-<script src="js/demo.js"></script>  
+<script src="{{ asset('js/demo-skin-changer.js') }}"></script>  
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/jquery.nanoscroller.min.js') }}"></script>
+<script src="{{ asset('js/demo.js') }}"></script>  
 
-<script src="js/moment.min.js"></script>
-<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="js/jquery-jvectormap-world-merc-en.js"></script>
-<script src="js/gdp-data.js"></script>
-<script src="js/flot/jquery.flot.min.js"></script>
-<script src="js/flot/jquery.flot.resize.min.js"></script>
-<script src="js/flot/jquery.flot.time.min.js"></script>
-<script src="js/flot/jquery.flot.threshold.js"></script>
-<script src="js/flot/jquery.flot.axislabels.js"></script>
-<script src="js/jquery.sparkline.min.js"></script>
-<script src="js/skycons.js"></script>
+<script src="{{ asset('js/moment.min.js') }}"></script>
+<script src="{{ asset('js/jquery-jvectormap-1.2.2.min.js') }}"></script>
+<script src="{{ asset('js/jquery-jvectormap-world-merc-en.js') }}"></script>
+<script src="{{ asset('js/gdp-data.js') }}"></script>
+<script src="{{ asset('js/flot/jquery.flot.min.js') }}"></script>
+<script src="{{ asset('js/flot/jquery.flot.resize.min.js') }}"></script>
+<script src="{{ asset('js/flot/jquery.flot.time.min.js') }}"></script>
+<script src="{{ asset('js/flot/jquery.flot.threshold.js') }}"></script>
+<script src="{{ asset('js/flot/jquery.flot.axislabels.js') }}"></script>
+<script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
+<script src="{{ asset('js/skycons.js') }}"></script>
 
-<script src="js/scripts.js"></script>
-<script src="js/pace.min.js"></script>
+<script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('js/dataTables.fixedHeader.js') }}"></script>
+<script src="{{ asset('js/dataTables.tableTools.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.bootstrap.js') }}"></script>
+
+<script src="{{ asset('js/scripts.js') }}"></script>
+<script src="{{ asset('js/pace.min.js') }}"></script>
+
+<script>
+$(document).ready(function () {
+    var table = $('#table-example').dataTable({
+        'info': false,
+        'sDom': 'lTfr<"clearfix">tip',
+        'oTableTools': {
+            'aButtons': [
+                {
+                    'sExtends': 'collection',
+                    'sButtonText': '<i class="fa fa-cloud-download"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i>',
+                    'aButtons': ['csv', 'xls', 'pdf', 'copy', 'print']
+                }
+            ]
+        }
+    });
+
+    var tt = new $.fn.dataTable.TableTools(table);
+    $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');
+
+    var tableFixed = $('#table-example-fixed').dataTable({
+        'info': true,
+        'pageLength': 50
+    });
+
+    new $.fn.dataTable.FixedHeader(tableFixed);
+});
+</script>
 
 <script>
     $(document).ready(function () {
@@ -195,4 +228,4 @@
         skycons.play();
 
     });
-</script>
+</script> 
