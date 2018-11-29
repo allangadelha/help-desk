@@ -18,6 +18,9 @@ Route::group(['middleware' => ['auth']], function () {
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/login');
     });
 
+    Route::get('/', function () {
+        return view('home');
+    });
     Route::get('/home', function () {
         return view('home');
     });
@@ -39,6 +42,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('edit/{id}', ['as' => 'status.edit', 'uses' => 'StatusController@edit']);
         Route::put('update/{id}', ['as' => 'status.update', 'uses' => 'StatusController@update']);
         Route::get('destroy/{id}', ['as' => 'status.destroy', 'uses' => 'StatusController@destroy']);
+     });
+     
+    Route::group(['prefix' => 'prioridade'], function(){
+        Route::get('index', ['as' => 'prioridade.index', 'uses' => 'PrioridadeController@index']);
+        Route::get('create', ['as' => 'prioridade.create', 'uses' => 'PrioridadeController@create']);
+        Route::post('store', ['as' => 'prioridade.store', 'uses' => 'PrioridadeController@store']);
+        Route::get('edit/{id}', ['as' => 'prioridade.edit', 'uses' => 'PrioridadeController@edit']);
+        Route::put('update/{id}', ['as' => 'prioridade.update', 'uses' => 'PrioridadeController@update']);
+        Route::get('destroy/{id}', ['as' => 'prioridade.destroy', 'uses' => 'PrioridadeController@destroy']);
      });
 
 });

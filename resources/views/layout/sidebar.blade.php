@@ -144,8 +144,32 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/status/create') }}" class="<?php if(urlAtual() == url('statusx/create')) echo 'active'; ?>">
+                                <a href="{{ url('/status/create') }}" class="<?php if(urlAtual() == url('status/create')) echo 'active'; ?>">
                                     <i class="fa fa-clock-o" style="color: #2980b9"></i>
+                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
+                                    Cadastrar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="<?php if(urlAtual() == url('prioridade/index') || urlAtual() == url('prioridade/create')) echo 'active'; ?>">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-star"></i>
+                            <span>Prioridades</span>
+                            <i class="fa fa-angle-right drop-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="{{ url('/prioridade/index') }}" class="<?php if(urlAtual() == url('prioridade/index')) echo 'active'; ?>">
+                                    <i class="fa fa-star green"></i>
+                                    <i class="glyphicon glyphicon-list green"></i>
+                                    Listar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/prioridade/create') }}" class="<?php if(urlAtual() == url('prioridade/create')) echo 'active'; ?>">
+                                    <i class="fa fa-star" style="color: #2980b9"></i>
                                     <i class="fa fa-plus-square" style="color: #2980b9"></i>
                                     Cadastrar
                                 </a>
