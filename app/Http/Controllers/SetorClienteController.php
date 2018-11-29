@@ -40,7 +40,7 @@ class SetorClienteController extends Controller
         
     }
     
-    //Salva so dados do setor no banco
+    //Salva os dados do setor no banco
     public function store(SetorRequest $request)
     {
         
@@ -63,7 +63,8 @@ class SetorClienteController extends Controller
         return view('setoresClientes.edit', ['setorCliente' => $setorCliente]);
         
     }
-    
+        
+    //Atualiza o setor no banco de dados
     public function update(SetorRequest $request, $id)
     {
         
@@ -77,6 +78,7 @@ class SetorClienteController extends Controller
         
     }
     
+    //Exclui setor do banco de dados
     public function destroy($id){
         
         $this->setorCliente->find($id)->delete();
@@ -84,6 +86,7 @@ class SetorClienteController extends Controller
         
     }
     
+    //Exibe dados do setor
     public function show($id){
         
         $setorCliente = $this->setorCliente->find($id);

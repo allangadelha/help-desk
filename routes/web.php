@@ -18,7 +18,7 @@ Route::group(['middleware' => ['auth']], function () {
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/login');
     });
 
-    Route::get('/', function () {
+    Route::get('/home', function () {
         return view('home');
     });
     
@@ -30,6 +30,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('show/{id}', ['as' => 'setoresClientes.show', 'uses' => 'SetorClienteController@show']);
         Route::put('update/{id}', ['as' => 'setoresClientes.update', 'uses' => 'SetorClienteController@update']);
         Route::get('destroy/{id}', ['as' => 'setoresClientes.destroy', 'uses' => 'SetorClienteController@destroy']);
+     });
+     
+    Route::group(['prefix' => 'status'], function(){
+        Route::get('index', ['as' => 'status.index', 'uses' => 'StatusController@index']);
+        Route::get('create', ['as' => 'status.create', 'uses' => 'StatusController@create']);
+        Route::post('store', ['as' => 'status.store', 'uses' => 'StatusController@store']);
+        Route::get('edit/{id}', ['as' => 'status.edit', 'uses' => 'StatusController@edit']);
+        Route::put('update/{id}', ['as' => 'status.update', 'uses' => 'StatusController@update']);
+        Route::get('destroy/{id}', ['as' => 'status.destroy', 'uses' => 'StatusController@destroy']);
      });
 
 });

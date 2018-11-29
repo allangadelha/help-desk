@@ -1,6 +1,6 @@
 @extends('layout.template')
 @section('title')
-Setores
+Status
 @endsection
 
 @section('content')
@@ -9,9 +9,9 @@ Setores
         <div class="row">
             <div class="col-lg-12">
                 <ol class="breadcrumb">
-                    <li>Setores</li>
+                    <li>Status</li>
                 </ol>
-                <h1>Listagem de setores</h1>
+                <h1>Listagem de status</h1>
             </div>
         </div>
         <div class="row">
@@ -28,24 +28,21 @@ Setores
                                 <thead>
                                     <tr>
                                         <th style="width: 40%">ID</th>
-                                        <th style="width: 40%">Setor</th>
+                                        <th style="width: 40%">Status</th>
                                         <th style="width: 20%; text-align: center">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($setorCliente as $sc)
+                                    @foreach($status as $s)
                                     <tr>
-                                        <td>{{ $sc->id }}</td>
-                                        <td>{{ $sc->setor }}</td>
+                                        <td>{{ $s->id }}</td>
+                                        <td>{{ $s->status }}</td>
                                         <td >
-                                            <a class="btn btn-primary" href="{{ route('setoresClientes.show', ['id' => $sc->id]) }}">
-                                                <span class="fa fa-search-plus fa-inverse"></span>
-                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a class="btn btn-primary" href="{{ route('setoresClientes.edit', ['id' => $sc->id]) }}">
+                                            <a class="btn btn-primary" href="{{ route('status.edit', ['id' => $s->id]) }}">
                                                 <span class="fa fa-pencil fa-inverse"></span>
-                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </a>
                                             <a OnClick="return confirm('Deseja mesmo excluir? ESTÁ AÇÃO É IRREVERSÍVEL')"
-                                               class="btn btn-danger" href="{{ route('setoresClientes.destroy', ['id' => $sc->id ]) }}" >
+                                               class="btn btn-danger pull-right" href="{{ route('status.destroy', ['id' => $s->id ]) }}" >
                                                 <span class="fa fa-trash-o fa-inverse"></span>
                                             </a>
                                         </td>

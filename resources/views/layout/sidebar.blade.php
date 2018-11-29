@@ -23,8 +23,8 @@
                     <li class="nav-header nav-header-first hidden-sm hidden-xs">
                         Navegação
                     </li>
-                    <li class="active">
-                        <a href="/">
+                    <li class="<?php if(urlAtual() == url('/home')) echo 'active'; ?>">
+                        <a href="/home">
                             <i class="fa fa-dashboard"></i>
                             <span>Dashboard</span>
                             <!--<span class="label label-primary label-circle pull-right">28</span>-->
@@ -105,7 +105,7 @@
                         </ul>
                     </li>
                     
-                    <li>
+                    <li class="<?php if(urlAtual() == url('setoresClientes/index') || urlAtual() == url('setoresClientes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-institution"></i>
                             <span>Setores</span>
@@ -113,15 +113,39 @@
                         </a>
                         <ul class="submenu">
                             <li>
-                                <a href="{{ url('/setoresClientes/index') }}">
+                                <a href="{{ url('/setoresClientes/index') }}" class="<?php if(urlAtual() == url('setoresClientes/index')) echo 'active'; ?>">
                                     <i class="fa fa-institution green"></i>
                                     <i class="glyphicon glyphicon-list green"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/setoresClientes/create') }}">
+                                <a href="{{ url('/setoresClientes/create') }}" class="<?php if(urlAtual() == url('setoresClientes/create')) echo 'active'; ?>">
                                     <i class="fa fa-institution" style="color: #2980b9"></i>
+                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
+                                    Cadastrar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="<?php if(urlAtual() == url('status/index') || urlAtual() == url('status/create')) echo 'active'; ?>">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-clock-o"></i>
+                            <span>Status</span>
+                            <i class="fa fa-angle-right drop-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="{{ url('/status/index') }}" class="<?php if(urlAtual() == url('status/index')) echo 'active'; ?>">
+                                    <i class="fa fa-clock-o green"></i>
+                                    <i class="glyphicon glyphicon-list green"></i>
+                                    Listar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/status/create') }}" class="<?php if(urlAtual() == url('statusx/create')) echo 'active'; ?>">
+                                    <i class="fa fa-clock-o" style="color: #2980b9"></i>
                                     <i class="fa fa-plus-square" style="color: #2980b9"></i>
                                     Cadastrar
                                 </a>
