@@ -12,6 +12,13 @@ class SetorCliente extends Model
     
     protected $fillable = [
         'setor'
-    ];    
+    ];  
+    
+    public function cliente() 
+    {
+        
+        return $this->hasMany('App\User', 'setor_id');
+        
+    }
     
 }

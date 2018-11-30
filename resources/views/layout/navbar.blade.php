@@ -160,7 +160,6 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="user-profile.html"><i class="fa fa-user"></i>Meu perfil</a></li>
-                            <li><a href="#"><i class="fa fa-cog"></i>Configurações</a></li>
                             <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-power-off"></i>Sair</a></li>
                         </ul>
                     </li>

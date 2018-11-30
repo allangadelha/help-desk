@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('telefone')->nullable();
             $table->integer('id_tipo_users')->unsigned()->nullable();
             $table->foreign('id_tipo_users')->references('id')->on('tipo_users');
+            $table->integer('setor_id')->unsigned()->nullable();
+            $table->foreign('setor_id')->references('id')->on('setor_clientes');
             $table->integer('ativo')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -12,7 +12,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="user-profile.html"><i class="fa fa-user"></i>Meu perfil</a></li>
-                            <li><a href="#"><i class="fa fa-cog"></i>Configurações</a></li>
                             <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-power-off"></i>Sair</a></li>
                         </ul>
                     </span>
@@ -71,14 +70,7 @@
                                     <i class="glyphicon glyphicon-list green"></i>
                                     Listar
                                 </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/clientes/create') }}" class="<?php if(urlAtual() == url('clientes/create')) echo 'active'; ?>">
-                                    <i class="glyphicon glyphicon-user" style="color: #2980b9"></i>
-                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
-                                    Cadastrar
-                                </a>
-                            </li>
+                            </li>                            
                         </ul>
                     </li>
                     <li class="<?php if(urlAtual() == url('atendentes/index') || urlAtual() == url('atendentes/create')) echo 'active'; ?>">

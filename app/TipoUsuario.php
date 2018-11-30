@@ -14,4 +14,11 @@ class TipoUsuario extends Model
         'tipo'
     ]; 
     
+    public function cliente() 
+    {
+        
+        return $this->hasMany('App\User', 'id_tipo_users');
+        
+    }
+        
 }

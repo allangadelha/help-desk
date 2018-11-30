@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'telefone', 'ativo', 'id_tipo_users'
+        'name', 'email', 'password', 'ativo', 'id_tipo_users'
     ];
 
     /**
@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function tipoUsuario()
+    {
+        
+        return $this->belongsTo('App\TipoUsuario', 'id_tipo_users');
+        
+    }
+    
+    public function setor()
+    {
+        
+        return $this->belongsTo('App\SetorCliente', 'setor_id');
+        
+    }
 }
