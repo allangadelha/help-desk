@@ -9,7 +9,7 @@ function dataSQLtoPTbr($data_mysql = null)
         $data = $data_mysql;
     }
 
-    return date('d-m-Y', strtotime($data));
+    return date('d/m/Y', strtotime($data));
 }
 
 /**

@@ -185,6 +185,23 @@
                             </li>
                         </ul>
                     </li>
+                    
+                    <li class="<?php if(urlAtual() == url('usuarios/index') || urlAtual() == url('usuarios/create')) echo 'active'; ?>">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-user-md"></i>
+                            <span>Usuários</span>
+                            <i class="fa fa-angle-right drop-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="{{ url('/usuarios/index') }}" class="<?php if(urlAtual() == url('usuarios/index')) echo 'active'; ?>">
+                                    <i class="fa fa-user-md green"></i>
+                                    <i class="glyphicon glyphicon-list green"></i>
+                                    Listar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 <!--                    <li>
                         <a href="widgets.html">
                             <i class="fa fa-th-large"></i>

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'setoresClientes'], function() {
+        Route::get('/', ['as' => 'setoresClientes.index', 'uses' => 'SetorClienteController@index']);
         Route::get('index', ['as' => 'setoresClientes.index', 'uses' => 'SetorClienteController@index']);
         Route::get('create', ['as' => 'setoresClientes.create', 'uses' => 'SetorClienteController@create']);
         Route::post('store', ['as' => 'setoresClientes.store', 'uses' => 'SetorClienteController@store']);
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'status'], function() {
+        Route::get('/', ['as' => 'status.index', 'uses' => 'StatusController@index']);
         Route::get('index', ['as' => 'status.index', 'uses' => 'StatusController@index']);
         Route::get('create', ['as' => 'status.create', 'uses' => 'StatusController@create']);
         Route::post('store', ['as' => 'status.store', 'uses' => 'StatusController@store']);
@@ -45,6 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'prioridade'], function() {
+        Route::get('/', ['as' => 'prioridade.index', 'uses' => 'PrioridadeController@index']);
         Route::get('index', ['as' => 'prioridade.index', 'uses' => 'PrioridadeController@index']);
         Route::get('create', ['as' => 'prioridade.create', 'uses' => 'PrioridadeController@create']);
         Route::post('store', ['as' => 'prioridade.store', 'uses' => 'PrioridadeController@store']);
@@ -54,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'tiposUsuarios'], function() {
+        Route::get('/', ['as' => 'tiposUsuarios.index', 'uses' => 'TiposUsuariosController@index']);
         Route::get('index', ['as' => 'tiposUsuarios.index', 'uses' => 'TiposUsuariosController@index']);
         Route::get('create', ['as' => 'tiposUsuarios.create', 'uses' => 'TiposUsuariosController@create']);
         Route::post('store', ['as' => 'tiposUsuarios.store', 'uses' => 'TiposUsuariosController@store']);
@@ -63,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'clientes'], function() {
+        Route::get('/', ['as' => 'clientes.index', 'uses' => 'ClientesController@index']);
         Route::get('index', ['as' => 'clientes.index', 'uses' => 'ClientesController@index']);
         Route::get('create', ['as' => 'clientes.create', 'uses' => 'ClientesController@create']);
         Route::post('store', ['as' => 'clientes.store', 'uses' => 'ClientesController@store']);
@@ -73,9 +78,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'atendentes'], function() {
+        Route::get('/', ['as' => 'atendentes.index', 'uses' => 'AtendentesController@index']);
         Route::get('index', ['as' => 'atendentes.index', 'uses' => 'AtendentesController@index']);
-        Route::get('create', ['as' => 'atendentes.create', 'uses' => 'AtendentesController@create']);
-        Route::post('store', ['as' => 'atendentes.store', 'uses' => 'AtendentesController@store']);
         Route::get('edit/{id}', ['as' => 'atendentes.edit', 'uses' => 'AtendentesController@edit']);
         Route::get('show/{id}', ['as' => 'atendentes.show', 'uses' => 'AtendentesController@show']);
         Route::put('update/{id}', ['as' => 'atendentes.update', 'uses' => 'AtendentesController@update']);
@@ -83,13 +87,23 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'chamados'], function() {
+        Route::get('/', ['as' => 'chamados.index', 'uses' => 'ChamadosController@index']);
         Route::get('index', ['as' => 'chamados.index', 'uses' => 'ChamadosController@index']);
-        Route::get('create', ['as' => 'chamados.create', 'uses' => 'ChamadosController@create']);
-        Route::post('store', ['as' => 'chamados.store', 'uses' => 'ChamadosController@store']);
         Route::get('edit/{id}', ['as' => 'chamados.edit', 'uses' => 'ChamadosController@edit']);
         Route::get('show/{id}', ['as' => 'chamados.show', 'uses' => 'ChamadosController@show']);
         Route::put('update/{id}', ['as' => 'chamados.update', 'uses' => 'ChamadosController@update']);
         Route::get('destroy/{id}', ['as' => 'chamados.destroy', 'uses' => 'ChamadosController@destroy']);
+    });
+
+    Route::group(['prefix' => 'usuarios'], function() {
+        Route::get('/', ['as' => 'usuarios.index', 'uses' => 'UsuariosController@index']);
+        Route::get('index', ['as' => 'usuarios.index', 'uses' => 'UsuariosController@index']);
+        Route::get('create', ['as' => 'usuarios.create', 'uses' => 'UsuariosController@create']);
+        Route::post('store', ['as' => 'usuarios.store', 'uses' => 'UsuariosController@store']);
+        Route::get('edit/{id}', ['as' => 'usuarios.edit', 'uses' => 'UsuariosController@edit']);
+        Route::get('show/{id}', ['as' => 'usuarios.show', 'uses' => 'UsuariosController@show']);
+        Route::put('update/{id}', ['as' => 'usuarios.update', 'uses' => 'UsuariosController@update']);
+        Route::get('destroy/{id}', ['as' => 'usuarios.destroy', 'uses' => 'UsuariosController@destroy']);
     });
 });
 
