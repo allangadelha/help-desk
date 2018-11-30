@@ -30,7 +30,7 @@
                             <!--<span class="label label-primary label-circle pull-right">28</span>-->
                         </a>
                     </li>
-                    <li>
+                    <li class="<?php if(urlAtual() == url('chamados/index') || urlAtual() == url('chamados/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-bar-chart-o"></i>
                             <span>Chamados</span>
@@ -38,26 +38,26 @@
                         </a>
                         <ul class="submenu">
                             <li>
-                                <a href="tables.html">
+                                <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
                                     <i class="fa fa-warning fa-fw fa-lg yellow"></i>
                                     Em aberto
                                 </a>
                             </li>
                             <li>
-                                <a href="tables-advanced.html">
+                                <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
                                     <i class="fa fa-info-circle fa-fw fa-lg" style="color: #2980b9"></i>
                                     Em atendimento
                                 </a>
                             </li>
                             <li>
-                                <a href="users.html">
+                                <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
                                     <i class="fa fa-check-circle fa-fw fa-lg green"></i>
                                     Atendidos
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="<?php if(urlAtual() == url('clientes/index') || urlAtual() == url('clientes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-users"></i>
                             <span>Clientes</span>
@@ -66,14 +66,14 @@
                         <ul class="submenu">
                             <li>
                                 
-                                <a href="email-inbox.html">
+                                <a href="{{ url('/clientes/index') }}" class="<?php if(urlAtual() == url('clientes/index')) echo 'active'; ?>">
                                     <i class="fa fa-users green"></i>
                                     <i class="glyphicon glyphicon-list green"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="email-detail.html">
+                                <a href="{{ url('/clientes/create') }}" class="<?php if(urlAtual() == url('clientes/create')) echo 'active'; ?>">
                                     <i class="glyphicon glyphicon-user" style="color: #2980b9"></i>
                                     <i class="fa fa-plus-square" style="color: #2980b9"></i>
                                     Cadastrar
@@ -81,7 +81,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="<?php if(urlAtual() == url('atendentes/index') || urlAtual() == url('atendentes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-headphones"></i>
                             <span>Atendentes</span>
@@ -89,14 +89,14 @@
                         </a>
                         <ul class="submenu">
                             <li>
-                                <a href="graphs-morris.html">
+                                <a href="{{ url('/atendentes/index') }}" class="<?php if(urlAtual() == url('atendentes/index')) echo 'active'; ?>">
                                     <i class="fa fa-headphones green"></i>
                                     <i class="glyphicon glyphicon-list green"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="graphs-flot.html">
+                                <a href="{{ url('/atendentes/create') }}" class="<?php if(urlAtual() == url('atendentes/create')) echo 'active'; ?>">
                                     <i class="fa fa-headphones" style="color: #2980b9"></i>
                                     <i class="fa fa-plus-square" style="color: #2980b9"></i>
                                     Cadastrar
