@@ -87,13 +87,6 @@
                                     Listar
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ url('/atendentes/create') }}" class="<?php if(urlAtual() == url('atendentes/create')) echo 'active'; ?>">
-                                    <i class="fa fa-headphones" style="color: #2980b9"></i>
-                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
-                                    Cadastrar
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     

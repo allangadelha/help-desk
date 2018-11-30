@@ -21,4 +21,11 @@ class SetorCliente extends Model
         
     }
     
+    public function atendente() 
+    {
+        
+        return $this->hasMany('App\User', 'setor_id');
+        
+    }
+    
 }

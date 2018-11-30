@@ -40,4 +40,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\SetorCliente', 'setor_id');
         
     }
+    
+    public function setora()
+    {
+        
+        return $this->belongsTo('App\SetorCliente', 'setor_id');
+        
+    }
 }
