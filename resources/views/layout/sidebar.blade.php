@@ -176,6 +176,30 @@
                             </li>
                         </ul>
                     </li>
+                    
+                    <li class="<?php if(urlAtual() == url('tiposUsuarios/index') || urlAtual() == url('tiposUsuarios/create')) echo 'active'; ?>">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-user"></i>
+                            <span>Tipo de Usuário</span>
+                            <i class="fa fa-angle-right drop-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="{{ url('/tiposUsuarios/index') }}" class="<?php if(urlAtual() == url('tiposUsuarios/index')) echo 'active'; ?>">
+                                    <i class="fa fa-user green"></i>
+                                    <i class="glyphicon glyphicon-list green"></i>
+                                    Listar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/tiposUsuarios/create') }}" class="<?php if(urlAtual() == url('tiposUsuarios/create')) echo 'active'; ?>">
+                                    <i class="fa fa-user" style="color: #2980b9"></i>
+                                    <i class="fa fa-plus-square" style="color: #2980b9"></i>
+                                    Cadastrar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 <!--                    <li>
                         <a href="widgets.html">
                             <i class="fa fa-th-large"></i>

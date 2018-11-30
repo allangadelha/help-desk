@@ -52,6 +52,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('update/{id}', ['as' => 'prioridade.update', 'uses' => 'PrioridadeController@update']);
         Route::get('destroy/{id}', ['as' => 'prioridade.destroy', 'uses' => 'PrioridadeController@destroy']);
      });
+     
+     Route::group(['prefix' => 'tiposUsuarios'], function(){
+        Route::get('index', ['as' => 'tiposUsuarios.index', 'uses' => 'TiposUsuariosController@index']);
+        Route::get('create', ['as' => 'tiposUsuarios.create', 'uses' => 'TiposUsuariosController@create']);
+        Route::post('store', ['as' => 'tiposUsuarios.store', 'uses' => 'TiposUsuariosController@store']);
+        Route::get('edit/{id}', ['as' => 'tiposUsuarios.edit', 'uses' => 'TiposUsuariosController@edit']);
+        Route::put('update/{id}', ['as' => 'tiposUsuarios.update', 'uses' => 'TiposUsuariosController@update']);
+        Route::get('destroy/{id}', ['as' => 'tiposUsuarios.destroy', 'uses' => 'TiposUsuariosController@destroy']);
+     });
 
 });
 
