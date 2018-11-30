@@ -1,6 +1,6 @@
 @extends('layout.template')
 @section('title')
-Detalhes do Cliente
+Detalhes do Atendente
 @endsection
 
 @section('content')
@@ -9,10 +9,10 @@ Detalhes do Cliente
         <div class="row">
             <div class="col-lg-12">
                 <ol class="breadcrumb">
-                    <li><a href="{{ route('clientes.index') }}">Clientes</a></li>
-                    <li class="active"><span>Detalhes do cliente</span></li>
+                    <li><a href="{{ route('clientes.index') }}">Atedentes</a></li>
+                    <li class="active"><span>Detalhes do atendente</span></li>
                 </ol>
-                <h1>Detalhes do cliente</h1>
+                <h1>Detalhes do atendente</h1>
             </div>
         </div>
         <div class="row">
@@ -26,56 +26,96 @@ Detalhes do Cliente
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                            Nome:                                        
+                                        <a style="color: white" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            Nome:
+                                        </a>
                                     </h4>
                                 </div>
-                                <div id="" class="panel-collapse collapse in" style="">
+                                <div id="collapseOne" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        {{ $clientes->name }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                            E-mail:                                        
-                                    </h4>
-                                </div>
-                                <div id="" class="panel-collapse collapse in" style="">
-                                    <div class="panel-body">
-                                        {{ $clientes->email }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                            Telefone:                                        
-                                    </h4>
-                                </div>
-                                <div id="" class="panel-collapse collapse in" style="">
-                                    <div class="panel-body">
-                                        {{ $clientes->telefone }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                            Setor:                                        
-                                    </h4>
-                                </div>
-                                <div id="" class="panel-collapse collapse in" style="">
-                                    <div class="panel-body">
-                                        {{ $clientes->setor->setor }}
+                                        {{ $atendentes->name }}
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a style="color: white" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                            E-mail: 
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        {{ $atendentes->email }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a style="color: white" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                            Setor:  
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        {{ $atendentes->setor->setor }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a style="color: white" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                            Ativo:  
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        @if($atendentes->ativo == 1) Sim  @else Não @endif
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a style="color: white" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                            Cadastrado em: 
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        {{ dataSQLtoPTbr($atendentes->created_at) }}
+                                    </div>
+                                </div>
+                            </div>                            
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a style="color: white" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                            Editado em:   
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseSix" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        {{ dataSQLtoPTbr($atendentes->updated_at) }}
+                                    </div>
+                                </div>
+                            </div>       
                         </div>
                         <div class="form-group">                        
                             {{-- Botão de Voltar --}}          
-                            <a class="btn btn-danger" href="{{ route('clientes.index')}}">Voltar</a>
+                            <a class="btn btn-danger" href="{{ route('atendentes.index')}}">Voltar</a>
                         </div>
                     </div>
                 </div>
