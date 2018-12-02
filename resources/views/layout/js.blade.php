@@ -4,6 +4,8 @@
 <script src="{{ asset('js/jquery.nanoscroller.min.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>  
 
+<script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>  
+
 <script src="{{ asset('js/moment.min.js') }}"></script>
 <script src="{{ asset('js/jquery-jvectormap-1.2.2.min.js') }}"></script>
 <script src="{{ asset('js/jquery-jvectormap-world-merc-en.js') }}"></script>

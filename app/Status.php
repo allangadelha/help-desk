@@ -12,6 +12,13 @@ class Status extends Model
     
     protected $fillable = [
         'status'
-    ];    
+    ];
+    
+    public function chamado() 
+    {
+        
+        return $this->hasMany('App\Chamado', 'id_status');
+        
+    }
     
 }

@@ -19,7 +19,7 @@
                     <div class="pull-right hidden-xs">
                         <div class="xs-graph pull-left">
                             <div class="graph-label">
-                                <b><i class="fa fa-reorder"></i> 838</b> Orders
+                                <b><i class="fa fa-reorder"></i> 838</b> Chamados
                             </div>
                             <div class="graph-content spark-orders"><canvas width="125" height="25" style="display: inline-block; width: 125px; height: 25px; vertical-align: top;"></canvas></div>
                         </div>
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-lg-3 col-sm-6 col-xs-12">
                 <div class="main-box infographic-box colored emerald-bg">
-                    <i class="fa fa-bar-chart-o"></i>
+                    <i class="fa fa-comment"></i>
                     <span class="headline">Chamados</span>
                     <span class="value">4.658</span>
                 </div>
@@ -39,14 +39,14 @@
                 <div class="main-box infographic-box colored green-bg">
                     <i class="fa fa-users"></i>
                     <span class="headline">Clientes</span>
-                    <span class="value">22.631</span>
+                    <span class="value">{{ App\User::where('id_tipo_users', '=', 3)->count() }}</span>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-xs-12">
                 <div class="main-box infographic-box colored red-bg">
                     <i class="fa fa-headphones"></i>
                     <span class="headline">Atendentes</span>
-                    <span class="value">92.421</span>
+                    <span class="value">{{ App\User::where('id_tipo_users', '<>', 3)->count() }}</span>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-xs-12">

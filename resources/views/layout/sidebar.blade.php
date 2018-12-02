@@ -7,7 +7,7 @@
                 <div class="user-box">
                     <span class="name">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Scarlett J.
+                            {{ Auth::user()->name }}
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
@@ -29,29 +29,42 @@
                             <!--<span class="label label-primary label-circle pull-right">28</span>-->
                         </a>
                     </li>
-                    <li class="<?php if(urlAtual() == url('chamados/index') || urlAtual() == url('chamados/create')) echo 'active'; ?>">
+                    <li class="<?php if(urlAtual() == url('chamados/index') || urlAtual() == url('chamados/emaberto') || urlAtual() == url('chamados/ematendimento') || urlAtual() == url('chamados/atendidos') || urlAtual() == url('chamados/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-bar-chart-o"></i>
+                            <i class="fa fa-comment"></i>
                             <span>Chamados</span>
                             <i class="fa fa-angle-right drop-icon"></i>
                         </a>
                         <ul class="submenu">
                             <li>
                                 <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
+                                    <i class="glyphicon glyphicon-list purple"></i>
+                                    Listar todos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/chamados/emaberto') }}" class="<?php if(urlAtual() == url('chamados/emaberto')) echo 'active'; ?>">
                                     <i class="fa fa-warning fa-fw fa-lg yellow"></i>
                                     Em aberto
                                 </a>
                             </li>
+                            
                             <li>
-                                <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
+                                <a href="{{ url('/chamados/ematendimento') }}" class="<?php if(urlAtual() == url('chamados/ematendimento')) echo 'active'; ?>">
                                     <i class="fa fa-info-circle fa-fw fa-lg" style="color: #2980b9"></i>
                                     Em atendimento
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
+                                <a href="{{ url('/chamados/atendidos') }}" class="<?php if(urlAtual() == url('chamados/atendidos')) echo 'active'; ?>">
                                     <i class="fa fa-check-circle fa-fw fa-lg green"></i>
                                     Atendidos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/chamados/create') }}" class="<?php if(urlAtual() == url('chamados/create')) echo 'active'; ?>">
+                                    <i class="fa fa-pencil fa-fw fa-lg red"></i>
+                                    Cadastrar
                                 </a>
                             </li>
                         </ul>

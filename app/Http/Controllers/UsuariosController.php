@@ -55,7 +55,7 @@ class UsuariosController extends Controller
         $ativo         = $request->input('ativo');
         $id_tipo_users = $request->input('id_tipo_users');
         
-        $this->atendentes->find($id)->update([
+        $this->usuarios->find($id)->update([
             'name'          => $name,
             'email'         => $email,
             'ativo'         => $ativo,

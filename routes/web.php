@@ -89,6 +89,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'chamados'], function() {
         Route::get('/', ['as' => 'chamados.index', 'uses' => 'ChamadosController@index']);
         Route::get('index', ['as' => 'chamados.index', 'uses' => 'ChamadosController@index']);
+        Route::get('emaberto', ['as' => 'chamados.emaberto', 'uses' => 'ChamadosController@emAberto']);
+        Route::get('ematendimento', ['as' => 'chamados.ematendimento', 'uses' => 'ChamadosController@emAtendimento']);
+        Route::get('atendidos', ['as' => 'chamados.atendidos', 'uses' => 'ChamadosController@atendidos']);
+        Route::get('create', ['as' => 'chamados.create', 'uses' => 'ChamadosController@create']);
+        Route::post('store', ['as' => 'chamados.store', 'uses' => 'ChamadosController@store']);
         Route::get('edit/{id}', ['as' => 'chamados.edit', 'uses' => 'ChamadosController@edit']);
         Route::get('show/{id}', ['as' => 'chamados.show', 'uses' => 'ChamadosController@show']);
         Route::put('update/{id}', ['as' => 'chamados.update', 'uses' => 'ChamadosController@update']);

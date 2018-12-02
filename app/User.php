@@ -46,5 +46,19 @@ class User extends Authenticatable
         
         return $this->belongsTo('App\SetorCliente', 'setor_id');
         
+    } 
+    
+    public function chamadoAtendente()
+    {
+        
+        return $this->belongsTo('App\Chamado', 'id_u_atendente');
+        
+    }
+    
+    public function chamadoCliente() 
+    {
+        
+        return $this->belongsTo('App\Chamado', 'id_u_solicita');
+        
     }
 }
