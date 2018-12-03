@@ -9,18 +9,25 @@ use App\Http\Requests\ClientesRequest;
 
 use App\TipoUsuario;
 
+use \Illuminate\Contracts\Auth\Access\Gate;
+
 class UsuariosController extends Controller
 {
     
+    private $gate;
     private $usuarios;
     
 
-    public function __construct(        
+    public function __construct(
+    Gate $gate,
     User $usuarios
     ) {
         
         $this->middleware('auth');
+        $this->gate = $gate;
         $this->usuarios = $usuarios;
+        
+        
     }
     
     //Listando usuarios
@@ -29,19 +36,27 @@ class UsuariosController extends Controller
         
         $usuarios = $this->usuarios->get();
         
-        return view('usuarios.index', compact('usuarios'));
+        if($this->gate->allows('administrador')):       
+            return view('usuarios.index', compact('usuarios'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
         
     //Mostra formulário de edição de usuarios
     public function edit($id)
     {
-        
+               
         $usuarios = $this->usuarios->find($id);
         
         $tipo = TipoUsuario::pluck('tipo', 'id');
-                                
-        return view('usuarios.edit', ['usuarios' => $usuarios, 'tipo' => $tipo]);
+           
+        if($this->gate->allows('administrador')):
+            return view('usuarios.edit', ['usuarios' => $usuarios, 'tipo' => $tipo]);
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -62,7 +77,11 @@ class UsuariosController extends Controller
             'id_tipo_users' => $id_tipo_users
         ]);
         
-        return redirect()->route('usuarios.index')->withSuccess('Usuário editado com sucesso');
+        if($this->gate->allows('administrador')):
+            return redirect()->route('usuarios.index')->withSuccess('Usuário editado com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
         
@@ -70,7 +89,12 @@ class UsuariosController extends Controller
     public function destroy($id){
         
         $this->usuarios->find($id)->delete();
-        return redirect()->route('usuarios.index')->withSuccess('Usuário excluído com sucesso');
+        
+        if($this->gate->allows('administrador')):
+            return redirect()->route('usuarios.index')->withSuccess('Usuário excluído com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -79,7 +103,12 @@ class UsuariosController extends Controller
     public function show($id){
         
         $usuarios = $this->usuarios->find($id);
-        return view('usuarios.show', compact('usuarios'));
+        
+        if($this->gate->allows('administrador')):
+            return view('usuarios.show', compact('usuarios'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     

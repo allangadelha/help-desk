@@ -1,6 +1,6 @@
 @extends('layout.template')
 @section('title')
-Chamados em Aberto
+Meus Chamados
 @endsection
 
 @section('content')
@@ -9,9 +9,9 @@ Chamados em Aberto
         <div class="row">
             <div class="col-lg-12">
                 <ol class="breadcrumb">
-                    <li>Chamados em Aberto</li>
+                    <li>Meus Chamados</li>
                 </ol>
-                <h1>Chamados em Aberto</h1>
+                <h1>Meus Chamados</h1>
             </div>
         </div>
         <div class="row">
@@ -33,6 +33,7 @@ Chamados em Aberto
                                         <th>SOLICITADO POR</th>
                                         <th>STATUS</th>
                                         <th>CRIADO EM</th>
+                                        <th>FINALIZADO EM</th>
                                         <th style="text-align: center">Ações</th>
                                     </tr>
                                 </thead>
@@ -47,19 +48,11 @@ Chamados em Aberto
                                             {{ $c->statuses->status }}
                                         </td>
                                         <td>{{ dataSQLtoPTbr($c->created_at) }}</td>
+                                        <td>{{ dataSQLtoPTbr($c->updated_at) }}</td>
                                         <td >
                                             <a class="btn btn-primary" href="{{ route('chamados.show', ['id' => $c->id]) }}">
                                                 <span class="fa fa-search-plus fa-inverse"></span>
-                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a class="btn btn-primary" href="{{ route('chamados.edit', ['id' => $c->id]) }}">
-                                                <span class="fa fa-pencil fa-inverse"></span>
-                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            @if(Gate::check('administrador'))
-                                            <a OnClick="return confirm('Deseja mesmo excluir? ESTÁ AÇÃO É IRREVERSÍVEL')"
-                                               class="btn btn-danger" href="{{ route('chamados.destroy', ['id' => $c->id ]) }}" >
-                                                <span class="fa fa-trash-o fa-inverse"></span>
                                             </a>
-                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

@@ -7,17 +7,22 @@ use Illuminate\Http\Request;
 use App\Prioridade;
 use App\Http\Requests\PrioridadeRequest;
 
+use \Illuminate\Contracts\Auth\Access\Gate;
+
 class PrioridadeController extends Controller
 {
     
+    private $gate;
     private $prioridade;
     
 
-    public function __construct(        
+    public function __construct(
+    Gate $gate,
     Prioridade $prioridade
     ) {
         
         $this->middleware('auth');
+        $this->gate = $gate;
         $this->prioridade = $prioridade;
     }
     
@@ -26,30 +31,39 @@ class PrioridadeController extends Controller
     {
         
         $prioridade= $this->prioridade->get();
-        
-        return view('prioridade.index', compact('prioridade'));
+        if($this->gate->allows('administrador')): 
+            return view('prioridade.index', compact('prioridade'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
     //Mostrar formulário de cadastro de prioridade
     public function create()
     {
-        
-        return view('prioridade.create');
+        if($this->gate->allows('administrador')):  
+            return view('prioridade.create');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
     //Salva os dados de prioridade no banco
     public function store(PrioridadeRequest $request)
     {
-//        dd($request->all());
+
         $prioridade = $request->input('prioridade');
         
         $this->prioridade->create([
             'prioridade' => $prioridade
         ]);
-        
-        return redirect()->route('prioridade.index')->withSuccess('Prioridade inserido com sucesso');
+        if($this->gate->allows('administrador')):  
+            return redirect()->route('prioridade.index')->withSuccess('Prioridade inserido com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -58,8 +72,11 @@ class PrioridadeController extends Controller
     {
         
         $prioridade = $this->prioridade->find($id);
-                                
-        return view('prioridade.edit', ['prioridade' => $prioridade]);
+        if($this->gate->allows('administrador')):                         
+            return view('prioridade.edit', ['prioridade' => $prioridade]);
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -73,8 +90,11 @@ class PrioridadeController extends Controller
         $this->prioridade->find($id)->update([
             'prioridade' => $prioridade
         ]);
-        
-        return redirect()->route('prioridade.index')->withSuccess('Prioridade editado com sucesso');
+        if($this->gate->allows('administrador')): 
+            return redirect()->route('prioridade.index')->withSuccess('Prioridade editado com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -83,7 +103,11 @@ class PrioridadeController extends Controller
     public function destroy($id){
         
         $this->prioridade->find($id)->delete();
-        return redirect()->route('prioridade.index')->withSuccess('Prioridade excluído com sucesso');
+        if($this->gate->allows('administrador')): 
+            return redirect()->route('prioridade.index')->withSuccess('Prioridade excluído com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     

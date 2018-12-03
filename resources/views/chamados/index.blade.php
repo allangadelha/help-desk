@@ -54,10 +54,12 @@ Chamados
                                             <a class="btn btn-primary" href="{{ route('chamados.edit', ['id' => $c->id]) }}">
                                                 <span class="fa fa-pencil fa-inverse"></span>
                                             </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            @if(Gate::check('administrador'))
                                             <a OnClick="return confirm('Deseja mesmo excluir? ESTÁ AÇÃO É IRREVERSÍVEL')"
                                                class="btn btn-danger" href="{{ route('chamados.destroy', ['id' => $c->id ]) }}" >
                                                 <span class="fa fa-trash-o fa-inverse"></span>
                                             </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

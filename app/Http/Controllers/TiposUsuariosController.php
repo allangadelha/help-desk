@@ -7,17 +7,22 @@ use Illuminate\Http\Request;
 use App\TipoUsuario;
 use App\Http\Requests\TiposUsuariosRequest;
 
+use \Illuminate\Contracts\Auth\Access\Gate;
+
 class TiposUsuariosController extends Controller
 {
     
+    private $gate;
     private $tiposUsuarios;
     
 
     public function __construct(        
+    Gate $gate,
     TipoUsuario $tiposUsuarios
     ) {
         
         $this->middleware('auth');
+        $this->gate = $gate;
         $this->tiposUsuarios = $tiposUsuarios;
     }
     
@@ -27,7 +32,11 @@ class TiposUsuariosController extends Controller
         
         $tiposUsuarios = $this->tiposUsuarios->get();
         
-        return view('tiposusuarios.index', compact('tiposUsuarios'));
+        if($this->gate->allows('administrador')): 
+            return view('tiposusuarios.index', compact('tiposUsuarios'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -35,7 +44,11 @@ class TiposUsuariosController extends Controller
     public function create()
     {
         
-        return view('tiposusuarios.create');
+        if($this->gate->allows('administrador')): 
+            return view('tiposusuarios.create');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -49,7 +62,11 @@ class TiposUsuariosController extends Controller
             'tipo' => $tipo
         ]);
         
-        return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo inserido com sucesso');
+        if($this->gate->allows('administrador')): 
+            return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo inserido com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -58,8 +75,12 @@ class TiposUsuariosController extends Controller
     {
         
         $tiposUsuarios = $this->tiposUsuarios->find($id);
-                                
-        return view('tiposusuarios.edit', ['tiposUsuarios' => $tiposUsuarios]);
+        
+        if($this->gate->allows('administrador')): 
+            return view('tiposusuarios.edit', ['tiposUsuarios' => $tiposUsuarios]);
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -74,7 +95,11 @@ class TiposUsuariosController extends Controller
             'tipo' => $tipo
         ]);
         
-        return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo editado com sucesso');
+        if($this->gate->allows('administrador')):
+            return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo editado com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -83,7 +108,12 @@ class TiposUsuariosController extends Controller
     public function destroy($id){
         
         $this->tiposUsuarios->find($id)->delete();
-        return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo excluído com sucesso');
+        
+        if($this->gate->allows('administrador')):
+            return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo excluído com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     

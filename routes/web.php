@@ -18,12 +18,8 @@ Route::group(['middleware' => ['auth']], function () {
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/login');
     });
 
-    Route::get('/', function () {
-        return view('home');
-    });
-    Route::get('/home', function () {
-        return view('home');
-    });
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
 
     Route::group(['prefix' => 'setoresClientes'], function() {
         Route::get('/', ['as' => 'setoresClientes.index', 'uses' => 'SetorClienteController@index']);
@@ -92,6 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('emaberto', ['as' => 'chamados.emaberto', 'uses' => 'ChamadosController@emAberto']);
         Route::get('ematendimento', ['as' => 'chamados.ematendimento', 'uses' => 'ChamadosController@emAtendimento']);
         Route::get('atendidos', ['as' => 'chamados.atendidos', 'uses' => 'ChamadosController@atendidos']);
+        Route::get('meuschamados', ['as' => 'chamados.meuschamados', 'uses' => 'ChamadosController@meusChamados']);
         Route::get('create', ['as' => 'chamados.create', 'uses' => 'ChamadosController@create']);
         Route::post('store', ['as' => 'chamados.store', 'uses' => 'ChamadosController@store']);
         Route::get('edit/{id}', ['as' => 'chamados.edit', 'uses' => 'ChamadosController@edit']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Chamado;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $chamados = Chamado::skip(0)->take(10)->get();       
+        
+        return view('home', compact('chamados'));
     }
 }

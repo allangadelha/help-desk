@@ -7,16 +7,21 @@ use Illuminate\Http\Request;
 use App\Status;
 use App\Http\Requests\StatusRequest;
 
+use \Illuminate\Contracts\Auth\Access\Gate;
+
 class StatusController extends Controller
 {
+    private $gate;
     private $status;
     
 
-    public function __construct(        
+    public function __construct(
+    Gate $gate,       
     Status $status
     ) {
         
         $this->middleware('auth');
+        $this->gate = $gate;
         $this->status = $status;
     }
     
@@ -26,7 +31,11 @@ class StatusController extends Controller
         
         $status = $this->status->get();
         
-        return view('status.index', compact('status'));
+        if($this->gate->allows('administrador')):  
+            return view('status.index', compact('status'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -34,7 +43,12 @@ class StatusController extends Controller
     public function create()
     {
         
-        return view('status.create');
+        if($this->gate->allows('administrador')):  
+            return view('status.create');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
+        
         
     }
     
@@ -48,7 +62,11 @@ class StatusController extends Controller
             'status' => $status
         ]);
         
-        return redirect()->route('status.index')->withSuccess('Status inserido com sucesso');
+        if($this->gate->allows('administrador')):  
+            return redirect()->route('status.index')->withSuccess('Status inserido com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -57,8 +75,12 @@ class StatusController extends Controller
     {
         
         $status = $this->status->find($id);
-                                
-        return view('status.edit', ['status' => $status]);
+        
+        if($this->gate->allows('administrador')):
+            return view('status.edit', ['status' => $status]);
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -73,7 +95,11 @@ class StatusController extends Controller
             'status' => $status
         ]);
         
-        return redirect()->route('status.index')->withSuccess('Status editado com sucesso');
+        if($this->gate->allows('administrador')):
+            return redirect()->route('status.index')->withSuccess('Status editado com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -82,7 +108,12 @@ class StatusController extends Controller
     public function destroy($id){
         
         $this->status->find($id)->delete();
-        return redirect()->route('status.index')->withSuccess('Status excluído com sucesso');
+        
+        if($this->gate->allows('administrador')):
+            return redirect()->route('status.index')->withSuccess('Status excluído com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     

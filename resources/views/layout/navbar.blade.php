@@ -38,8 +38,8 @@
                     </li>
                     <li class="dropdown profile-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ asset('img/samples/scarlet-159.png') }}" alt=""/>
-                            <span class="hidden-xs">{{ Auth::user()->name }}</span> <b class="caret"></b>
+                            <i class="fa fa-user fa-3x"></i>
+                            <span class="hidden-xs">{{ auth()->user()->name }}</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="user-profile.html"><i class="fa fa-user"></i>Meu perfil</a></li>

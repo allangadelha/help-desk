@@ -9,17 +9,22 @@ use App\Http\Requests\ClientesRequest;
 
 use App\TipoUsuario;
 
+use \Illuminate\Contracts\Auth\Access\Gate;
+
 class AtendentesController extends Controller
 {
     
+    private $gate;
     private $atendentes;
     
 
-    public function __construct(        
+    public function __construct(
+    Gate $gate,
     User $atendentes
     ) {
         
         $this->middleware('auth');
+        $this->gate = $gate;
         $this->atendentes = $atendentes;
     }
     
@@ -28,8 +33,11 @@ class AtendentesController extends Controller
     {
         
         $atendentes = $this->atendentes->where('id_tipo_users', '<>', 3)->get();
-        
-        return view('atendentes.index', compact('atendentes'));
+        if($this->gate->allows('administrador')): 
+            return view('atendentes.index', compact('atendentes'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
         
@@ -40,8 +48,12 @@ class AtendentesController extends Controller
         $atendentes = $this->atendentes->find($id);
         
         $tipo = TipoUsuario::pluck('tipo', 'id');
-                                
-        return view('atendentes.edit', ['atendentes' => $atendentes, 'tipo' => $tipo]);
+        
+        if($this->gate->allows('administrador')):
+            return view('atendentes.edit', ['atendentes' => $atendentes, 'tipo' => $tipo]);
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -62,7 +74,11 @@ class AtendentesController extends Controller
             'id_tipo_users' => $id_tipo_users
         ]);
         
-        return redirect()->route('atendentes.index')->withSuccess('Atendente editado com sucesso');
+        if($this->gate->allows('administrador')):
+            return redirect()->route('atendentes.index')->withSuccess('Atendente editado com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
         
@@ -70,7 +86,11 @@ class AtendentesController extends Controller
     public function destroy($id){
         
         $this->atendentes->find($id)->delete();
-        return redirect()->route('atendentes.index')->withSuccess('Atendente excluído com sucesso');
+        if($this->gate->allows('administrador')):
+            return redirect()->route('atendentes.index')->withSuccess('Atendente excluído com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -79,7 +99,11 @@ class AtendentesController extends Controller
     public function show($id){
         
         $atendentes = $this->atendentes->find($id);
-        return view('atendentes.show', compact('atendentes'));
+        if($this->gate->allows('administrador')): 
+            return view('atendentes.show', compact('atendentes'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     

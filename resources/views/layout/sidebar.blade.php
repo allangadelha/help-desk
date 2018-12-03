@@ -3,11 +3,11 @@
     <section id="col-left" class="col-left-nano">
         <div id="col-left-inner" class="col-left-nano-content">
             <div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
-                <img alt="" src="{{ asset('img/samples/scarlet-159.png') }}"/>
+                <i class="fa fa-user fa-4x"></i>
                 <div class="user-box">
                     <span class="name">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            {{ Auth::user()->name }}
+                            {{ auth()->user()->name }}
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
@@ -22,6 +22,7 @@
                     <li class="nav-header nav-header-first hidden-sm hidden-xs">
                         Navegação
                     </li>
+                    @if(Gate::check('administrador') || Gate::check('atendente'))
                     <li class="<?php if(urlAtual() == url('/home')) echo 'active'; ?>">
                         <a href="/home">
                             <i class="fa fa-dashboard"></i>
@@ -29,38 +30,60 @@
                             <!--<span class="label label-primary label-circle pull-right">28</span>-->
                         </a>
                     </li>
+                    @endif
+                    
                     <li class="<?php if(urlAtual() == url('chamados/index') || urlAtual() == url('chamados/emaberto') || urlAtual() == url('chamados/ematendimento') || urlAtual() == url('chamados/atendidos') || urlAtual() == url('chamados/create')) echo 'active'; ?>">
+                        
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-comment"></i>
                             <span>Chamados</span>
                             <i class="fa fa-angle-right drop-icon"></i>
                         </a>
+                        
                         <ul class="submenu">
+                            @if(Gate::check('administrador') || Gate::check('atendente'))
                             <li>
                                 <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
-                                    <i class="glyphicon glyphicon-list purple"></i>
+                                    <i class="fa fa-reorder purple"></i>
                                     Listar todos
                                 </a>
                             </li>
+                            @endif
+                            
+                            @if(Gate::check('administrador') || Gate::check('atendente'))
                             <li>
                                 <a href="{{ url('/chamados/emaberto') }}" class="<?php if(urlAtual() == url('chamados/emaberto')) echo 'active'; ?>">
                                     <i class="fa fa-warning fa-fw fa-lg yellow"></i>
                                     Em aberto
                                 </a>
                             </li>
+                            @endif
                             
+                            @if(Gate::check('administrador') || Gate::check('atendente'))                           
                             <li>
                                 <a href="{{ url('/chamados/ematendimento') }}" class="<?php if(urlAtual() == url('chamados/ematendimento')) echo 'active'; ?>">
                                     <i class="fa fa-info-circle fa-fw fa-lg" style="color: #2980b9"></i>
                                     Em atendimento
                                 </a>
                             </li>
+                            @endif
+                            
+                            @if(Gate::check('administrador') || Gate::check('atendente'))
                             <li>
                                 <a href="{{ url('/chamados/atendidos') }}" class="<?php if(urlAtual() == url('chamados/atendidos')) echo 'active'; ?>">
                                     <i class="fa fa-check-circle fa-fw fa-lg green"></i>
                                     Atendidos
                                 </a>
                             </li>
+                            @endif
+                            
+                            <li>
+                                <a href="{{ url('/chamados/meuschamados') }}" class="<?php if(urlAtual() == url('chamados/meuschamados')) echo 'active'; ?>">
+                                    <i class="fa fa-list fa-fw fa-lg" style="color: #2980b9"></i>
+                                    Meus chamados
+                                </a>
+                            </li>
+                            
                             <li>
                                 <a href="{{ url('/chamados/create') }}" class="<?php if(urlAtual() == url('chamados/create')) echo 'active'; ?>">
                                     <i class="fa fa-pencil fa-fw fa-lg red"></i>
@@ -69,6 +92,8 @@
                             </li>
                         </ul>
                     </li>
+                    
+                    @if(Gate::check('administrador') || Gate::check('atendente'))
                     <li class="<?php if(urlAtual() == url('clientes/index') || urlAtual() == url('clientes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-users"></i>
@@ -86,6 +111,9 @@
                             </li>                            
                         </ul>
                     </li>
+                    @endif
+                    
+                    @if(Gate::check('administrador'))
                     <li class="<?php if(urlAtual() == url('atendentes/index') || urlAtual() == url('atendentes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-headphones"></i>
@@ -102,7 +130,9 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     
+                    @if(Gate::check('administrador'))                    
                     <li class="<?php if(urlAtual() == url('setoresClientes/index') || urlAtual() == url('setoresClientes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-institution"></i>
@@ -126,7 +156,9 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     
+                    @if(Gate::check('administrador'))                    
                     <li class="<?php if(urlAtual() == url('status/index') || urlAtual() == url('status/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-clock-o"></i>
@@ -150,7 +182,9 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     
+                    @if(Gate::check('administrador'))                    
                     <li class="<?php if(urlAtual() == url('prioridade/index') || urlAtual() == url('prioridade/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-star"></i>
@@ -174,7 +208,9 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     
+                    @if(Gate::check('administrador'))
                     <li class="<?php if(urlAtual() == url('tiposUsuarios/index') || urlAtual() == url('tiposUsuarios/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-user"></i>
@@ -198,7 +234,9 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     
+                    @if(Gate::check('administrador'))
                     <li class="<?php if(urlAtual() == url('usuarios/index') || urlAtual() == url('usuarios/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-user-md"></i>
@@ -215,13 +253,7 @@
                             </li>
                         </ul>
                     </li>
-<!--                    <li>
-                        <a href="widgets.html">
-                            <i class="fa fa-th-large"></i>
-                            <span>Widgets</span>
-                            <span class="label label-success pull-right">New</span>
-                        </a>
-                    </li>                    -->
+                    @endif
                 </ul>
             </div>
         </div>

@@ -11,16 +11,22 @@ use App\Prioridade;
 
 use App\Http\Requests\ChamadoRequest;
 
+use \Illuminate\Contracts\Auth\Access\Gate;
+
 class ChamadosController extends Controller
 {
+    
+    private $gate;
     private $chamados;
     
 
-    public function __construct(        
+    public function __construct(  
+    Gate $gate,      
     Chamado $chamados
     ) {
         
         $this->middleware('auth');
+        $this->gate = $gate;
         $this->chamados = $chamados;
     }
     
@@ -62,6 +68,16 @@ class ChamadosController extends Controller
         return view('chamados.atendidos', compact('chamados'));
         
     }
+    
+    //Listando os chamados do cliente logado
+    public function meusChamados() 
+    {
+        
+        $chamados = $this->chamados->where('id_u_solicita', '=', auth()->user()->id)->get();
+                              
+        return view('chamados.meuschamados', compact('chamados'));
+        
+    }
         
     //Mostrar formulário de cadastro de chamado
     public function create()
@@ -83,10 +99,14 @@ class ChamadosController extends Controller
             'titulo'        => $titulo,
             'descricao'     => $descricao,
             'id_prioridade' => $id_prioridade,
-            'id_u_solicita' => \Auth::user()->id
+            'id_u_solicita' => auth()->user()->id
         ]);
         
-        return redirect()->route('chamados.index')->withSuccess('Chamado inserido com sucesso');
+        if($this->gate->allows('cliente')):  
+            return redirect()->route('chamados.meuschamados')->withSuccess('Chamado inserido com sucesso');
+        else:
+            return redirect()->route('chamados.index')->withSuccess('Chamado inserido com sucesso');
+        endif;
         
     }
     
@@ -120,7 +140,7 @@ class ChamadosController extends Controller
             'descricao'     => $descricao,
             'id_prioridade' => $id_prioridade,
             'id_status'     => $id_status,
-            'id_u_solicita' => \Auth::user()->id
+            'id_u_solicita' => auth()->user()->id
         ]);
         
         return redirect()->route('chamados.index')->withSuccess('Chamado editado com sucesso');

@@ -8,17 +8,22 @@ use App\SetorCliente;
 
 use App\Http\Requests\SetorRequest;
 
+use \Illuminate\Contracts\Auth\Access\Gate;
+
 class SetorClienteController extends Controller
 {
     
+    private $gate;
     private $setorCliente;
     
 
-    public function __construct(        
+    public function __construct(
+    Gate $gate,       
     SetorCliente $setorCliente
     ) {
         
         $this->middleware('auth');
+        $this->gate = $gate;
         $this->setorCliente = $setorCliente;
     }
     
@@ -28,15 +33,22 @@ class SetorClienteController extends Controller
         
         $setorCliente = $this->setorCliente->get();
         
-        return view('setoresclientes.index', compact('setorCliente'));
+        if($this->gate->allows('administrador')): 
+            return view('setoresclientes.index', compact('setorCliente'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
     //Mostrar formulário de cadastro de setores
     public function create()
     {
-        
-        return view('setoresclientes.create');
+        if($this->gate->allows('administrador')): 
+            return view('setoresclientes.create');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -50,7 +62,12 @@ class SetorClienteController extends Controller
             'setor' => $setor
         ]);
         
-        return redirect()->route('setoresClientes.index')->withSuccess('Setor inserido com sucesso');
+        if($this->gate->allows('administrador')): 
+            return redirect()->route('setoresClientes.index')->withSuccess('Setor inserido com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
+        
         
     }
     
@@ -59,8 +76,12 @@ class SetorClienteController extends Controller
     {
         
         $setorCliente = $this->setorCliente->find($id);
-                                
-        return view('setoresClientes.edit', ['setorCliente' => $setorCliente]);
+        
+        if($this->gate->allows('administrador')):                         
+            return view('setoresClientes.edit', ['setorCliente' => $setorCliente]);
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
         
@@ -74,7 +95,11 @@ class SetorClienteController extends Controller
             'setor' => $setor
         ]);
         
-        return redirect()->route('setoresClientes.index')->withSuccess('Setor editado com sucesso');
+        if($this->gate->allows('administrador')):   
+            return redirect()->route('setoresClientes.index')->withSuccess('Setor editado com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -82,7 +107,12 @@ class SetorClienteController extends Controller
     public function destroy($id){
         
         $this->setorCliente->find($id)->delete();
-        return redirect()->route('setoresClientes.index')->withSuccess('Setor excluído com sucesso');
+        
+        if($this->gate->allows('administrador')):   
+            return redirect()->route('setoresClientes.index')->withSuccess('Setor excluído com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -90,7 +120,12 @@ class SetorClienteController extends Controller
     public function show($id){
         
         $setorCliente = $this->setorCliente->find($id);
-        return view('setoresclientes.show', compact('setorCliente'));
+        
+        if($this->gate->allows('administrador')):   
+            return view('setoresclientes.show', compact('setorCliente'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
