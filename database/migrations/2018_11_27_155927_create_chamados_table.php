@@ -17,11 +17,11 @@ class CreateChamadosTable extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->text('descricao');
-            $table->integer('id_u_atendente')->unsigned();
+            $table->integer('id_u_atendente')->unsigned()->default('1');
             $table->foreign('id_u_atendente')->references('id')->on('users');
             $table->integer('id_u_solicita')->unsigned();
             $table->foreign('id_u_solicita')->references('id')->on('users');
-            $table->integer('id_status')->unsigned();
+            $table->integer('id_status')->unsigned()->default('1');
             $table->foreign('id_status')->references('id')->on('statuses');
             $table->integer('id_prioridade')->unsigned();
             $table->foreign('id_prioridade')->references('id')->on('prioridades');

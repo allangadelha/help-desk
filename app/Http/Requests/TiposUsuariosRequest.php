@@ -23,16 +23,21 @@ class TiposUsuariosRequest extends FormRequest
      */
     public function rules()
     {
+        
+        //regra de validação dos campos do formulário de tipo de usuário
         return [
             'tipo' => 'required'
         ];
+        
     }
     
     public function messages()
     {
-               
+     
+        //mensagem de validação dos campos do formulário de tipo de usuário
         return [
             'tipo.required' => 'O campo TIPO é obrigatório.'
         ];
+        
     }
 }

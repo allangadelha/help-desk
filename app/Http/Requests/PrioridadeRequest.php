@@ -23,16 +23,21 @@ class PrioridadeRequest extends FormRequest
      */
     public function rules()
     {
+        
+        //regra de validação dos campos do formulário de prioridade
         return [
             'prioridade' => 'required'
         ];
+        
     }
     
     public function messages()
     {
-               
+           
+        //mensagem de validação dos campos do formulário de prioridade
         return [
             'prioridade.required' => 'O campo PRIORIDADE é obrigatório.'
         ];
+        
     }
 }

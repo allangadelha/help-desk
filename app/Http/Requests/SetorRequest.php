@@ -23,16 +23,20 @@ class SetorRequest extends FormRequest
      */
     public function rules()
     {
+        //regra de validação dos campos do formulário de setor
         return [
             'setor' => 'required'
         ];
+        
     }
     
     public function messages()
     {
-               
+            
+        //mensagem de validação dos campos do formulário de setor
         return [
             'setor.required' => 'O campo SETOR é obrigatório.'
         ];
+        
     }
 }

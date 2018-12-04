@@ -22,6 +22,7 @@ class SetorClienteController extends Controller
     SetorCliente $setorCliente
     ) {
         
+        //Autenticação
         $this->middleware('auth');
         $this->gate = $gate;
         $this->setorCliente = $setorCliente;
@@ -33,6 +34,7 @@ class SetorClienteController extends Controller
         
         $setorCliente = $this->setorCliente->get();
         
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return view('setoresclientes.index', compact('setorCliente'));
         else:
@@ -44,6 +46,9 @@ class SetorClienteController extends Controller
     //Mostrar formulário de cadastro de setores
     public function create()
     {
+        
+        //mostra formulário de cadastro de setor
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return view('setoresclientes.create');
         else:
@@ -56,12 +61,14 @@ class SetorClienteController extends Controller
     public function store(SetorRequest $request)
     {
         
+        //dados do formulário de setor
         $setor = $request->input('setor');
         
         $this->setorCliente->create([
             'setor' => $setor
         ]);
         
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return redirect()->route('setoresClientes.index')->withSuccess('Setor inserido com sucesso');
         else:
@@ -74,9 +81,10 @@ class SetorClienteController extends Controller
     //Mostra formulário de edição de setor
     public function edit($id)
     {
-        
+        //busca setor
         $setorCliente = $this->setorCliente->find($id);
         
+        //validação ACL
         if($this->gate->allows('administrador')):                         
             return view('setoresClientes.edit', ['setorCliente' => $setorCliente]);
         else:
@@ -89,12 +97,14 @@ class SetorClienteController extends Controller
     public function update(SetorRequest $request, $id)
     {
         
+        //dados do formulário de edição de setor
         $setor = $request->input('setor');
         
         $this->setorCliente->find($id)->update([
             'setor' => $setor
         ]);
         
+        //validação ACL
         if($this->gate->allows('administrador')):   
             return redirect()->route('setoresClientes.index')->withSuccess('Setor editado com sucesso');
         else:
@@ -106,8 +116,10 @@ class SetorClienteController extends Controller
     //Exclui setor do banco de dados
     public function destroy($id){
         
+        //busca setor a ser excluído
         $this->setorCliente->find($id)->delete();
         
+        //validação ACL
         if($this->gate->allows('administrador')):   
             return redirect()->route('setoresClientes.index')->withSuccess('Setor excluído com sucesso');
         else:
@@ -119,8 +131,10 @@ class SetorClienteController extends Controller
     //Exibe dados do setor
     public function show($id){
         
+        //busca setor a ser mostrado
         $setorCliente = $this->setorCliente->find($id);
         
+        //validação ACL
         if($this->gate->allows('administrador')):   
             return view('setoresclientes.show', compact('setorCliente'));
         else:

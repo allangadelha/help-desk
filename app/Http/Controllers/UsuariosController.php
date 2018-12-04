@@ -23,6 +23,7 @@ class UsuariosController extends Controller
     User $usuarios
     ) {
         
+        //Autenticação
         $this->middleware('auth');
         $this->gate = $gate;
         $this->usuarios = $usuarios;
@@ -34,8 +35,10 @@ class UsuariosController extends Controller
     public function index() 
     {
         
+        //lista usuários
         $usuarios = $this->usuarios->get();
         
+        //validação ACL
         if($this->gate->allows('administrador')):       
             return view('usuarios.index', compact('usuarios'));
         else:
@@ -48,10 +51,12 @@ class UsuariosController extends Controller
     public function edit($id)
     {
                
+        ////busca usuário a ser editado
         $usuarios = $this->usuarios->find($id);
         
         $tipo = TipoUsuario::pluck('tipo', 'id');
            
+        //validação ACL
         if($this->gate->allows('administrador')):
             return view('usuarios.edit', ['usuarios' => $usuarios, 'tipo' => $tipo]);
         else:
@@ -65,6 +70,7 @@ class UsuariosController extends Controller
     public function update(ClientesRequest $request, $id)
     {
         
+        //dados do formulário de edição de usuário
         $name          = $request->input('name');
         $email         = $request->input('email');
         $ativo         = $request->input('ativo');
@@ -77,6 +83,7 @@ class UsuariosController extends Controller
             'id_tipo_users' => $id_tipo_users
         ]);
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return redirect()->route('usuarios.index')->withSuccess('Usuário editado com sucesso');
         else:
@@ -88,8 +95,10 @@ class UsuariosController extends Controller
     //Exclui usuarios do banco de dados
     public function destroy($id){
         
+        //busca usuário a ser deletado
         $this->usuarios->find($id)->delete();
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return redirect()->route('usuarios.index')->withSuccess('Usuário excluído com sucesso');
         else:
@@ -101,6 +110,7 @@ class UsuariosController extends Controller
     public function perfil($id)
     {
                
+        //busca usuário para edição de perfil
         $usuarios = $this->usuarios->find($id);
         
         $tipo = TipoUsuario::pluck('tipo', 'id');
@@ -113,7 +123,8 @@ class UsuariosController extends Controller
     //Atualiza perfil no banco de dados
     public function updatePerfil(ClientesRequest $request, $id)
     {
-        
+                
+        // dados do formulário de edição de perfil
         $name          = $request->input('name');
         $email         = $request->input('email');
         $ativo         = $request->input('ativo');
@@ -134,6 +145,7 @@ class UsuariosController extends Controller
     public function password($id)
     {
                
+        //busca usuário para alteração de senha
         $usuarios = $this->usuarios->find($id);
            
             return view('usuarios.password', ['usuarios' => $usuarios]);
@@ -148,6 +160,7 @@ class UsuariosController extends Controller
         $password               = $request->input('password');
         $password_confirmation  = $request->input('password_confirmation');
         
+        //valida campos de senha da edição de senha
         if($password != $password_confirmation):
             return redirect()->back()->withErrors('Senha diferentes');
         endif;
@@ -165,8 +178,10 @@ class UsuariosController extends Controller
     //Exibe dados do usuarios
     public function show($id){
         
+        //busca usuário a ser mostrado
         $usuarios = $this->usuarios->find($id);
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return view('usuarios.show', compact('usuarios'));
         else:

@@ -14,6 +14,7 @@ class TipoUsuario extends Model
         'tipo'
     ]; 
     
+    //relacionamento com cliente
     public function cliente() 
     {
         

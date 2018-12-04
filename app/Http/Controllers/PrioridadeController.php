@@ -21,6 +21,8 @@ class PrioridadeController extends Controller
     Prioridade $prioridade
     ) {
         
+        
+        //Autenticação
         $this->middleware('auth');
         $this->gate = $gate;
         $this->prioridade = $prioridade;
@@ -30,7 +32,10 @@ class PrioridadeController extends Controller
     public function index() 
     {
         
+        //listando prioridades
         $prioridade= $this->prioridade->get();
+        
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return view('prioridade.index', compact('prioridade'));
         else:
@@ -42,6 +47,9 @@ class PrioridadeController extends Controller
     //Mostrar formulário de cadastro de prioridade
     public function create()
     {
+        
+        //mostra formulário de cadastro de prioridade
+        //validação ACL
         if($this->gate->allows('administrador')):  
             return view('prioridade.create');
         else:
@@ -54,11 +62,14 @@ class PrioridadeController extends Controller
     public function store(PrioridadeRequest $request)
     {
 
+        //dados do formulário de cadastro de prioridade
         $prioridade = $request->input('prioridade');
         
         $this->prioridade->create([
             'prioridade' => $prioridade
         ]);
+        
+        //validação ACL
         if($this->gate->allows('administrador')):  
             return redirect()->route('prioridade.index')->withSuccess('Prioridade inserido com sucesso');
         else:
@@ -71,7 +82,10 @@ class PrioridadeController extends Controller
     public function edit($id)
     {
         
+        //buscando prioridade
         $prioridade = $this->prioridade->find($id);
+        
+        //validação ACL
         if($this->gate->allows('administrador')):                         
             return view('prioridade.edit', ['prioridade' => $prioridade]);
         else:
@@ -85,11 +99,14 @@ class PrioridadeController extends Controller
     public function update(PrioridadeRequest $request, $id)
     {
         
+        //dados do formulário de edição
         $prioridade = $request->input('prioridade');
         
         $this->prioridade->find($id)->update([
             'prioridade' => $prioridade
         ]);
+        
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return redirect()->route('prioridade.index')->withSuccess('Prioridade editado com sucesso');
         else:
@@ -102,7 +119,11 @@ class PrioridadeController extends Controller
     //Exclui prioridade do banco de dados
     public function destroy($id){
         
+        
+        //busca prioridade a ser excluída
         $this->prioridade->find($id)->delete();
+        
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return redirect()->route('prioridade.index')->withSuccess('Prioridade excluído com sucesso');
         else:

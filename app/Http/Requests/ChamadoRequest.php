@@ -23,20 +23,25 @@ class ChamadoRequest extends FormRequest
      */
     public function rules()
     {
+        
+        //regra de validação dos campos do formulário de chamados
         return [
             'titulo'        => 'required',
             'descricao'     => 'required',
             'id_prioridade' => 'required'
         ];
+        
     }
     
     public function messages()
     {
-               
+        
+        //mensagens de validação dos campos do formulário de chamados
         return [
             'titulo.required'       => 'O campo TÍTULO é obrigatório.',
             'id_prioridade.required'=> 'O campo PRIORIDADE é obrigatório.',
             'descricao.required'    => 'O campo DESCRIÇÃO é obrigatório.'
         ];
+        
     }
 }

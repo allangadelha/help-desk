@@ -14,6 +14,7 @@ class SetorCliente extends Model
         'setor'
     ];  
     
+    //relacionamento com cliente
     public function cliente() 
     {
         
@@ -21,6 +22,7 @@ class SetorCliente extends Model
         
     }
     
+    //relacionamento com atendente
     public function atendente() 
     {
         

@@ -25,6 +25,7 @@ class ChamadosController extends Controller
     Chamado $chamados
     ) {
         
+        //Autenticação
         $this->middleware('auth');
         $this->gate = $gate;
         $this->chamados = $chamados;
@@ -34,10 +35,12 @@ class ChamadosController extends Controller
     public function index() 
     {
         
+        //Listando atendimento
         $chamados = $this->chamados->get();
         
+        //validação ACL 
         if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
-            return view('chamados.index', compact('chamados'));
+            return view('chamados/index', compact('chamados'));
         else:
             return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
         endif;
@@ -47,8 +50,10 @@ class ChamadosController extends Controller
     public function emAberto() 
     {
         
+        //listando chamados em aberto
         $chamados = $this->chamados->where('id_status', '=', 1)->get();
         
+        //validação ACL 
         if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
             return view('chamados.emaberto', compact('chamados'));
         else:
@@ -61,8 +66,10 @@ class ChamadosController extends Controller
     public function emAtendimento() 
     {
         
+        //listando chamados em atendimento
         $chamados = $this->chamados->where('id_status', '=', 2)->get();
         
+        //validação ACL 
         if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
             return view('chamados.ematendimento', compact('chamados'));
         else:
@@ -71,12 +78,14 @@ class ChamadosController extends Controller
         
     }
     
-    //Listando os chamados em atendimento
+    //Listando os chamados atendidos
     public function atendidos() 
     {
         
+        //listando chamados atendidos
         $chamados = $this->chamados->where('id_status', '=', 3)->get();
         
+        //validação ACL 
         if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
             return view('chamados.atendidos', compact('chamados'));
         else:
@@ -89,6 +98,7 @@ class ChamadosController extends Controller
     public function meusChamados() 
     {
         
+        //listando chamados do cliente logado
         $chamados = $this->chamados->where('id_u_solicita', '=', auth()->user()->id)->get();
                               
             return view('chamados.meuschamados', compact('chamados'));
@@ -98,8 +108,10 @@ class ChamadosController extends Controller
     //Mostrar formulário de cadastro de chamado
     public function create()
     {
+        
+        //listando prioridades
         $prioridade = Prioridade::pluck('prioridade', 'id');
-            return view('chamados.create', compact('prioridade'));
+        return view('chamados.create', compact('prioridade'));
         
     }
     
@@ -107,6 +119,7 @@ class ChamadosController extends Controller
     public function store(ChamadoRequest $request)
     {
         
+        //dados do formulário de criação de chamados
         $titulo         = $request->input('titulo');
         $descricao      = $request->input('descricao');
         $id_prioridade  = intval($request->input('id_prioridade'));
@@ -118,6 +131,7 @@ class ChamadosController extends Controller
             'id_u_solicita' => auth()->user()->id
         ]);
         
+        //validação ACL 
         if($this->gate->allows('cliente')):  
             return redirect()->route('chamados.meuschamados')->withSuccess('Chamado inserido com sucesso');
         else:
@@ -130,10 +144,16 @@ class ChamadosController extends Controller
     public function edit($id)
     {
         
+        //buscando chamado
         $chamados = $this->chamados->find($id);
+        
+        //listando prioridades
         $prioridade = Prioridade::pluck('prioridade', 'id');
+        
+        //listando status
         $status = Status::pluck('status', 'id');
          
+        //validação ACL 
         if($this->gate->allows('administrador') || $this->gate->allows('atendente')): 
             return view('chamados.edit', [
                 'chamados' => $chamados, 
@@ -150,6 +170,7 @@ class ChamadosController extends Controller
     public function update(ChamadoRequest $request, $id)
     {
         
+        //dados do formulário de edição
         $titulo         = $request->input('titulo');
         $descricao      = $request->input('descricao');
         $id_prioridade  = intval($request->input('id_prioridade'));
@@ -163,6 +184,7 @@ class ChamadosController extends Controller
             'id_u_solicita' => auth()->user()->id
         ]);
         
+        //validação ACL 
         if($this->gate->allows('administrador') || $this->gate->allows('atendente')): 
             return redirect()->route('chamados.index')->withSuccess('Chamado editado com sucesso');
         else:
@@ -174,7 +196,10 @@ class ChamadosController extends Controller
     //Exclui chamado do banco de dados
     public function destroy($id){
         
+        //busca chamado a ser excluído
         $this->chamados->find($id)->delete();
+        
+        //validação ACL 
         if($this->gate->allows('administrador')): 
             return redirect()->route('chamados.index')->withSuccess('Chamado excluído com sucesso');
         else:
@@ -186,6 +211,7 @@ class ChamadosController extends Controller
     //Exibe dados do chamado
     public function show($id){
         
+        //busca chamado a ser mostrado
         $chamados = $this->chamados->find($id);
         
         return view('chamados.show', compact('chamados'));

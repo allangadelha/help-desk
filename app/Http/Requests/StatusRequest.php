@@ -23,6 +23,8 @@ class StatusRequest extends FormRequest
      */
     public function rules()
     {
+        
+        //regra de validação dos campos do formulário de status
         return [
             'status' => 'required'
         ];
@@ -30,9 +32,11 @@ class StatusRequest extends FormRequest
     
     public function messages()
     {
-               
+             
+        //mensagem de validação dos campos do formulário de status
         return [
             'status.required' => 'O campo STATUS é obrigatório.'
         ];
+        
     }
 }

@@ -19,6 +19,7 @@ class ClientesController extends Controller
     User $clientes
     ) {
         
+        //Autenticação
         $this->middleware('auth');
         $this->clientes = $clientes;
     }
@@ -27,6 +28,7 @@ class ClientesController extends Controller
     public function index() 
     {
         
+        //Listando clientes
         $clientes = $this->clientes->where('id_tipo_users', 3)->get();
         
         return view('clientes.index', compact('clientes'));
@@ -36,6 +38,7 @@ class ClientesController extends Controller
     //Mostra formulário de edição de cliente
     public function edit($id)
     {
+        
         
         $clientes = $this->clientes->find($id);
         

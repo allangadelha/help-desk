@@ -1,3 +1,4 @@
+<!--Javascript-->
 <script src="{{ asset('js/demo-skin-changer.js') }}"></script>  
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>

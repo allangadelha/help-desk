@@ -23,6 +23,7 @@ class AtendentesController extends Controller
     User $atendentes
     ) {
         
+        //Autenticação
         $this->middleware('auth');
         $this->gate = $gate;
         $this->atendentes = $atendentes;
@@ -47,7 +48,7 @@ class AtendentesController extends Controller
     public function edit($id)
     {
         
-        //busca usuário para edição
+        //busca atendimento para edição
         $atendentes = $this->atendentes->find($id);
         
         //lista tipos de usuários

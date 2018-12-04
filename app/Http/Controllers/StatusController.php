@@ -20,6 +20,7 @@ class StatusController extends Controller
     Status $status
     ) {
         
+        //Autenticação
         $this->middleware('auth');
         $this->gate = $gate;
         $this->status = $status;
@@ -29,8 +30,10 @@ class StatusController extends Controller
     public function index() 
     {
         
+        //lista status
         $status = $this->status->get();
         
+        //validação ACL
         if($this->gate->allows('administrador')):  
             return view('status.index', compact('status'));
         else:
@@ -43,6 +46,8 @@ class StatusController extends Controller
     public function create()
     {
         
+        //mostra formulário de criação de status
+        //validação ACL
         if($this->gate->allows('administrador')):  
             return view('status.create');
         else:
@@ -56,12 +61,14 @@ class StatusController extends Controller
     public function store(StatusRequest $request)
     {
         
+        //dados do formulário de criação de status
         $status = $request->input('status');
         
         $this->status->create([
             'status' => $status
         ]);
         
+        //validação ACL
         if($this->gate->allows('administrador')):  
             return redirect()->route('status.index')->withSuccess('Status inserido com sucesso');
         else:
@@ -74,8 +81,10 @@ class StatusController extends Controller
     public function edit($id)
     {
         
+        //busca status a ser editado
         $status = $this->status->find($id);
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return view('status.edit', ['status' => $status]);
         else:
@@ -89,12 +98,14 @@ class StatusController extends Controller
     public function update(StatusRequest $request, $id)
     {
         
+        //dados do formulário de edição de status
         $status = $request->input('status');
         
         $this->status->find($id)->update([
             'status' => $status
         ]);
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return redirect()->route('status.index')->withSuccess('Status editado com sucesso');
         else:
@@ -107,8 +118,10 @@ class StatusController extends Controller
     //Exclui status do banco de dados
     public function destroy($id){
         
+        //busca status a ser excluído 
         $this->status->find($id)->delete();
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return redirect()->route('status.index')->withSuccess('Status excluído com sucesso');
         else:

@@ -39,7 +39,7 @@
         <link rel="stylesheet" href="{{ asset('css/libs/jquery-jvectormap-1.2.2.css') }}" type="text/css"/>
         <link rel="stylesheet" href="{{ asset('css/libs/weather-icons.css') }}" type="text/css"/>
 
-        <link type="image/x-icon" href="favicon.png" rel="shortcut icon"/>
+        <link type="image/x-icon" href="{{ asset('img/favicon.png') }}" rel="shortcut icon"/>
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
         <!--[if lt IE 9]>

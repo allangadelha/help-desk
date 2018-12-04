@@ -14,6 +14,7 @@ class Status extends Model
         'status'
     ];
     
+    //relacionamento com chamado
     public function chamado() 
     {
         

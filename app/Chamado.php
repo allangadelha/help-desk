@@ -18,6 +18,8 @@ class Chamado extends Model
         'id_prioridade'
     ]; 
     
+    
+    //relacionamento com atendente
     public function atendente() 
     {
         
@@ -25,6 +27,7 @@ class Chamado extends Model
         
     }
     
+    //relacionamento com cliente
     public function cliente() 
     {
         
@@ -32,6 +35,7 @@ class Chamado extends Model
         
     }
     
+    //relacionamento com status
     public function statuses()
     {
         

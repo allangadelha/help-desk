@@ -21,17 +21,20 @@ class TiposUsuariosController extends Controller
     TipoUsuario $tiposUsuarios
     ) {
         
+        //Autenticação
         $this->middleware('auth');
         $this->gate = $gate;
         $this->tiposUsuarios = $tiposUsuarios;
     }
     
-    //Listando prioridade
+    //Listando tipo de usuário
     public function index() 
     {
         
+        //lista tipos de usuários
         $tiposUsuarios = $this->tiposUsuarios->get();
         
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return view('tiposusuarios.index', compact('tiposUsuarios'));
         else:
@@ -40,10 +43,11 @@ class TiposUsuariosController extends Controller
         
     }
     
-    //Mostrar formulário de cadastro de prioridade
+    //Mostrar formulário de cadastro de tipo de usuário
     public function create()
     {
-        
+        //mostra formulário de criação de tipo de usuário
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return view('tiposusuarios.create');
         else:
@@ -52,16 +56,18 @@ class TiposUsuariosController extends Controller
         
     }
     
-    //Salva os dados de prioridade no banco
+    //Salva os dados de tipo de usuário no banco
     public function store(TiposUsuariosRequest $request)
     {
 
+        //dados do formulário de criação de tip de usuário
         $tipo = $request->input('tipo');
         
         $this->tiposUsuarios->create([
             'tipo' => $tipo
         ]);
         
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo inserido com sucesso');
         else:
@@ -70,12 +76,14 @@ class TiposUsuariosController extends Controller
         
     }
     
-    //Mostra formulário de edição de prioridade
+    //Mostra formulário de edição de tipo de usuário
     public function edit($id)
     {
         
+        //busca tipo de usuário a ser editado
         $tiposUsuarios = $this->tiposUsuarios->find($id);
         
+        //validação ACL
         if($this->gate->allows('administrador')): 
             return view('tiposusuarios.edit', ['tiposUsuarios' => $tiposUsuarios]);
         else:
@@ -85,16 +93,18 @@ class TiposUsuariosController extends Controller
     }
     
     
-    //Atualiza prioridade no banco de dados
+    //Atualiza tipo de usuário no banco de dados
     public function update(TiposUsuariosRequest $request, $id)
     {
         
+        //dados do formulário de edição de tipo de usuário
         $tipo = $request->input('tipo');
         
         $this->tiposUsuarios->find($id)->update([
             'tipo' => $tipo
         ]);
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo editado com sucesso');
         else:
@@ -104,11 +114,13 @@ class TiposUsuariosController extends Controller
     }
     
     
-    //Exclui prioridade do banco de dados
+    //Exclui tipo de usuário do banco de dados
     public function destroy($id){
         
+        //busca tipo de usuário a ser excluído
         $this->tiposUsuarios->find($id)->delete();
         
+        //validação ACL
         if($this->gate->allows('administrador')):
             return redirect()->route('tiposUsuarios.index')->withSuccess('Tipo excluído com sucesso');
         else:

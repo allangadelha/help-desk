@@ -23,6 +23,7 @@
                     <li class="nav-header nav-header-first hidden-sm hidden-xs">
                         Navegação
                     </li>
+                    <!--dá acesso apenas a usuário administrador e atendente-->
                     @if(Gate::check('administrador') || Gate::check('atendente'))
                     <li class="<?php if(urlAtual() == url('/home')) echo 'active'; ?>">
                         <a href="/home">
@@ -42,6 +43,7 @@
                         </a>
                         
                         <ul class="submenu">
+                            <!--dá acesso apenas a usuário administrador e atendente-->
                             @if(Gate::check('administrador') || Gate::check('atendente'))
                             <li>
                                 <a href="{{ url('/chamados/index') }}" class="<?php if(urlAtual() == url('chamados/index')) echo 'active'; ?>">
@@ -51,6 +53,7 @@
                             </li>
                             @endif
                             
+                            <!--dá acesso apenas a usuário administrador e atendente-->
                             @if(Gate::check('administrador') || Gate::check('atendente'))
                             <li>
                                 <a href="{{ url('/chamados/emaberto') }}" class="<?php if(urlAtual() == url('chamados/emaberto')) echo 'active'; ?>">
@@ -60,6 +63,7 @@
                             </li>
                             @endif
                             
+                            <!--dá acesso apenas a usuário administrador e atendente-->
                             @if(Gate::check('administrador') || Gate::check('atendente'))                           
                             <li>
                                 <a href="{{ url('/chamados/ematendimento') }}" class="<?php if(urlAtual() == url('chamados/ematendimento')) echo 'active'; ?>">
@@ -69,6 +73,7 @@
                             </li>
                             @endif
                             
+                            <!--dá acesso apenas a usuário administrador e atendente-->
                             @if(Gate::check('administrador') || Gate::check('atendente'))
                             <li>
                                 <a href="{{ url('/chamados/atendidos') }}" class="<?php if(urlAtual() == url('chamados/atendidos')) echo 'active'; ?>">
@@ -94,6 +99,7 @@
                         </ul>
                     </li>
                     
+                    <!--dá acesso apenas a usuário administrador e atendente-->
                     @if(Gate::check('administrador') || Gate::check('atendente'))
                     <li class="<?php if(urlAtual() == url('clientes/index') || urlAtual() == url('clientes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
@@ -114,6 +120,7 @@
                     </li>
                     @endif
                     
+                    <!--dá acesso apenas a usuário administrador-->
                     @if(Gate::check('administrador'))
                     <li class="<?php if(urlAtual() == url('atendentes/index') || urlAtual() == url('atendentes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
@@ -133,6 +140,7 @@
                     </li>
                     @endif
                     
+                    <!--dá acesso apenas a usuário administrador -->
                     @if(Gate::check('administrador'))                    
                     <li class="<?php if(urlAtual() == url('setoresClientes/index') || urlAtual() == url('setoresClientes/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
@@ -159,6 +167,7 @@
                     </li>
                     @endif
                     
+                    <!--dá acesso apenas a usuário administrador -->
                     @if(Gate::check('administrador'))                    
                     <li class="<?php if(urlAtual() == url('status/index') || urlAtual() == url('status/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
@@ -185,6 +194,7 @@
                     </li>
                     @endif
                     
+                    <!--dá acesso apenas a usuário administrador -->
                     @if(Gate::check('administrador'))                    
                     <li class="<?php if(urlAtual() == url('prioridade/index') || urlAtual() == url('prioridade/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
@@ -211,6 +221,7 @@
                     </li>
                     @endif
                     
+                    <!--dá acesso apenas a usuário administrador -->
                     @if(Gate::check('administrador'))
                     <li class="<?php if(urlAtual() == url('tiposUsuarios/index') || urlAtual() == url('tiposUsuarios/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
@@ -237,6 +248,7 @@
                     </li>
                     @endif
                     
+                    <!--dá acesso apenas a usuário administrador -->
                     @if(Gate::check('administrador'))
                     <li class="<?php if(urlAtual() == url('usuarios/index') || urlAtual() == url('usuarios/create')) echo 'active'; ?>">
                         <a href="#" class="dropdown-toggle">
