@@ -1,7 +1,7 @@
 <!-- Menu superior -->
 <header class="navbar" id="header-navbar">
     <div class="container">
-        <a href="index-2.html" id="logo" class="navbar-brand">
+        <a href="/home" id="logo" class="navbar-brand">
             <img src="{{ asset('img/logo.png') }}" alt="" class="normal-logo logo-white"/>
             <img src="{{ asset('img/logo-black.png') }}" alt="" class="normal-logo logo-black"/>
             <img src="{{ asset('img/logo-small.png') }}" alt="" class="small-logo hidden-xs hidden-sm hidden"/>
