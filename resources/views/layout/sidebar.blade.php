@@ -11,7 +11,8 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="user-profile.html"><i class="fa fa-user"></i>Meu perfil</a></li>
+                            <li><a href="{{ url('usuarios/perfil', ['id' => auth()->user()->id ]) }}"><i class="fa fa-user"></i>Meu perfil</a></li>
+                            <li><a href="{{ url('usuarios/password', ['id' => auth()->user()->id ]) }}"><i class="fa fa-key"></i>Alterar senha</a></li>
                             <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-power-off"></i>Sair</a></li>
                         </ul>
                     </span>

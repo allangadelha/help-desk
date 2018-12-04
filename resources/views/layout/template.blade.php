@@ -96,6 +96,22 @@
             /* ]]> */
         </script>
     </head>
+    
+    @if(Auth::user()->ativo != '1') 
+    <body class="hold-transition login-page" cz-shortcut-listen="true">
+        {{ Auth::logout() }}
+        <div class="login-box">
+            <div class="login-logo">
+                <!--<span data-notify="icon" class="pe-7s-close-circle no-enter-icon"></span>-->
+                <center><img src="{{ asset('img/logo.png') }}" alt="" class="normal-logo logo-white" style="margin-top: 20px"/></center><br>
+                <center><p style="font-size: 18px">Usuário <b style="color: red">NÃO AUTIROZADO</b>. Favor entrar em contato com o administrador.</p></center>
+                <a href="#" target="_blank" data-notify="url"></a>
+            </div>
+        </div>
+        <meta http-equiv="refresh" content="4;{{ url('/') }}">
+    </body>
+    @else
+    
     <body>
         <div id="theme-wrapper">
 
@@ -124,5 +140,6 @@
         @include('layout.js') 
 
     </body>
+    @endif
 
 </html>

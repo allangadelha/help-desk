@@ -105,6 +105,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('edit/{id}', ['as' => 'usuarios.edit', 'uses' => 'UsuariosController@edit']);
         Route::get('show/{id}', ['as' => 'usuarios.show', 'uses' => 'UsuariosController@show']);
         Route::put('update/{id}', ['as' => 'usuarios.update', 'uses' => 'UsuariosController@update']);
+        Route::get('perfil/{id}', ['as' => 'usuarios.perfil', 'uses' => 'UsuariosController@perfil']);
+        Route::put('updatePerfil/{id}', ['as' => 'usuarios.updatePerfil', 'uses' => 'UsuariosController@updatePerfil']);
+        Route::get('password/{id}', ['as' => 'usuarios.password', 'uses' => 'UsuariosController@password']);
+        Route::put('updatePassword/{id}', ['as' => 'usuarios.updatePassword', 'uses' => 'UsuariosController@updatePassword']);
         Route::get('destroy/{id}', ['as' => 'usuarios.destroy', 'uses' => 'UsuariosController@destroy']);
     });
 });

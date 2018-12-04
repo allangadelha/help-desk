@@ -11,7 +11,7 @@ Usuários
                 <ol class="breadcrumb">
                     <li>Usuários</li>
                 </ol>
-                <h1>Listagem de atendentes</h1>
+                <h1>Listagem de Usuários</h1>
             </div>
         </div>
         <div class="row">

@@ -31,8 +31,10 @@ class AtendentesController extends Controller
     //Listando atendentes
     public function index() 
     {
-        
+        //lista usuários atendentes
         $atendentes = $this->atendentes->where('id_tipo_users', '<>', 3)->get();
+        
+        //validação ACL 
         if($this->gate->allows('administrador')): 
             return view('atendentes.index', compact('atendentes'));
         else:
@@ -45,10 +47,13 @@ class AtendentesController extends Controller
     public function edit($id)
     {
         
+        //busca usuário para edição
         $atendentes = $this->atendentes->find($id);
         
+        //lista tipos de usuários
         $tipo = TipoUsuario::pluck('tipo', 'id');
         
+        //validação ACL 
         if($this->gate->allows('administrador')):
             return view('atendentes.edit', ['atendentes' => $atendentes, 'tipo' => $tipo]);
         else:
@@ -62,6 +67,7 @@ class AtendentesController extends Controller
     public function update(ClientesRequest $request, $id)
     {
         
+        //campos vindo do formulário de edição
         $name          = $request->input('name');
         $email         = $request->input('email');
         $ativo         = $request->input('ativo');
@@ -74,6 +80,7 @@ class AtendentesController extends Controller
             'id_tipo_users' => $id_tipo_users
         ]);
         
+        //validação ACL 
         if($this->gate->allows('administrador')):
             return redirect()->route('atendentes.index')->withSuccess('Atendente editado com sucesso');
         else:
@@ -85,7 +92,10 @@ class AtendentesController extends Controller
     //Exclui atendentes do banco de dados
     public function destroy($id){
         
+        //busca atendente para exclusão
         $this->atendentes->find($id)->delete();
+        
+        //validação ACL 
         if($this->gate->allows('administrador')):
             return redirect()->route('atendentes.index')->withSuccess('Atendente excluído com sucesso');
         else:
@@ -98,7 +108,10 @@ class AtendentesController extends Controller
     //Exibe dados do atendentes
     public function show($id){
         
+        //busca atendente a ser mostrado
         $atendentes = $this->atendentes->find($id);
+        
+        //validação ACL 
         if($this->gate->allows('administrador')): 
             return view('atendentes.show', compact('atendentes'));
         else:

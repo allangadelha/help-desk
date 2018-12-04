@@ -36,7 +36,11 @@ class ChamadosController extends Controller
         
         $chamados = $this->chamados->get();
         
-        return view('chamados.index', compact('chamados'));
+        if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
+            return view('chamados.index', compact('chamados'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     //Listando os chamados em aberto
@@ -45,7 +49,11 @@ class ChamadosController extends Controller
         
         $chamados = $this->chamados->where('id_status', '=', 1)->get();
         
-        return view('chamados.emaberto', compact('chamados'));
+        if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
+            return view('chamados.emaberto', compact('chamados'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -55,7 +63,11 @@ class ChamadosController extends Controller
         
         $chamados = $this->chamados->where('id_status', '=', 2)->get();
         
-        return view('chamados.ematendimento', compact('chamados'));
+        if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
+            return view('chamados.ematendimento', compact('chamados'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -65,7 +77,11 @@ class ChamadosController extends Controller
         
         $chamados = $this->chamados->where('id_status', '=', 3)->get();
         
-        return view('chamados.atendidos', compact('chamados'));
+        if($this->gate->allows('administrador') || $this->gate->allows('atendente')):
+            return view('chamados.atendidos', compact('chamados'));
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -75,7 +91,7 @@ class ChamadosController extends Controller
         
         $chamados = $this->chamados->where('id_u_solicita', '=', auth()->user()->id)->get();
                               
-        return view('chamados.meuschamados', compact('chamados'));
+            return view('chamados.meuschamados', compact('chamados'));
         
     }
         
@@ -83,7 +99,7 @@ class ChamadosController extends Controller
     public function create()
     {
         $prioridade = Prioridade::pluck('prioridade', 'id');
-        return view('chamados.create', compact('prioridade'));
+            return view('chamados.create', compact('prioridade'));
         
     }
     
@@ -117,12 +133,16 @@ class ChamadosController extends Controller
         $chamados = $this->chamados->find($id);
         $prioridade = Prioridade::pluck('prioridade', 'id');
         $status = Status::pluck('status', 'id');
-                                
-        return view('chamados.edit', [
-            'chamados' => $chamados, 
-            'prioridade' => $prioridade,
-            'status' => $status
-        ]);
+         
+        if($this->gate->allows('administrador') || $this->gate->allows('atendente')): 
+            return view('chamados.edit', [
+                'chamados' => $chamados, 
+                'prioridade' => $prioridade,
+                'status' => $status
+            ]);
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
         
@@ -143,7 +163,11 @@ class ChamadosController extends Controller
             'id_u_solicita' => auth()->user()->id
         ]);
         
-        return redirect()->route('chamados.index')->withSuccess('Chamado editado com sucesso');
+        if($this->gate->allows('administrador') || $this->gate->allows('atendente')): 
+            return redirect()->route('chamados.index')->withSuccess('Chamado editado com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -151,7 +175,11 @@ class ChamadosController extends Controller
     public function destroy($id){
         
         $this->chamados->find($id)->delete();
-        return redirect()->route('chamados.index')->withSuccess('Chamado excluído com sucesso');
+        if($this->gate->allows('administrador')): 
+            return redirect()->route('chamados.index')->withSuccess('Chamado excluído com sucesso');
+        else:
+            return redirect('home')->withErrors('Você não tem acesso a página. Contate o administrador');
+        endif;
         
     }
     
@@ -159,6 +187,7 @@ class ChamadosController extends Controller
     public function show($id){
         
         $chamados = $this->chamados->find($id);
+        
         return view('chamados.show', compact('chamados'));
         
     }

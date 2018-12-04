@@ -98,6 +98,69 @@ class UsuariosController extends Controller
         
     }
     
+    public function perfil($id)
+    {
+               
+        $usuarios = $this->usuarios->find($id);
+        
+        $tipo = TipoUsuario::pluck('tipo', 'id');
+           
+            return view('usuarios.perfil', ['usuarios' => $usuarios, 'tipo' => $tipo]);
+        
+    }
+    
+    
+    //Atualiza perfil no banco de dados
+    public function updatePerfil(ClientesRequest $request, $id)
+    {
+        
+        $name          = $request->input('name');
+        $email         = $request->input('email');
+        $ativo         = $request->input('ativo');
+        $id_tipo_users = $request->input('id_tipo_users');
+        
+        $this->usuarios->find($id)->update([
+            'name'          => $name,
+            'email'         => $email,
+            'ativo'         => $ativo,
+            'id_tipo_users' => $id_tipo_users
+        ]);        
+        
+        return redirect()->route('home')->withSuccess('Usuário editado com sucesso');
+        
+        
+    }
+    
+    public function password($id)
+    {
+               
+        $usuarios = $this->usuarios->find($id);
+           
+            return view('usuarios.password', ['usuarios' => $usuarios]);
+        
+    }
+    
+    
+    //Atualiza senha no banco de dados
+    public function updatePassword(ClientesRequest $request, $id)
+    {
+        
+        $password               = $request->input('password');
+        $password_confirmation  = $request->input('password_confirmation');
+        
+        if($password != $password_confirmation):
+            return redirect()->back()->withErrors('Senha diferentes');
+        endif;
+        
+        $this->usuarios->find($id)->update([
+            'password'  => bcrypt($password)
+        ]);        
+        
+        return redirect()->route('home')->withSuccess('Senha editado com sucesso');
+        
+        
+    }
+    
     
     //Exibe dados do usuarios
     public function show($id){

@@ -42,7 +42,8 @@
                             <span class="hidden-xs">{{ auth()->user()->name }}</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="user-profile.html"><i class="fa fa-user"></i>Meu perfil</a></li>
+                            <li><a href="{{ url('usuarios/perfil', ['id' => auth()->user()->id ]) }}"><i class="fa fa-user"></i>Meu perfil</a></li>
+                            <li><a href="{{ url('usuarios/password', ['id' => auth()->user()->id ]) }}"><i class="fa fa-key"></i>Alterar senha</a></li>
                             <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-power-off"></i>Sair</a></li>
                         </ul>
                     </li>
